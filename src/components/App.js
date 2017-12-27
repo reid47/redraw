@@ -3,7 +3,7 @@ import { Toolbar } from './Toolbar';
 import { Menubar } from './Menubar';
 import { Statusbar } from './Statusbar';
 import { Viewer } from './Viewer';
-import { pushUndo, doUndo } from '../history';
+import { pushUndo, doUndo, doRedo } from '../history';
 
 function bresenham(x1, y1, x2, y2, callback) {
    x1 = x1 | 0;
@@ -83,7 +83,7 @@ export class App extends React.Component {
       <div className="App">
         <Menubar {...{
           onUndo: () => doUndo(this.ctx),
-          onRedo: () => null
+          onRedo: () => doRedo(this.ctx)
         }}/>
         <Toolbar {...{
           mode,
