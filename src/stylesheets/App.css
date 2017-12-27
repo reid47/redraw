@@ -1,0 +1,115 @@
+.Menubar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 24px;
+  background-color: gainsboro; }
+
+.Statusbar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 24px;
+  background-color: gainsboro; }
+
+.Toolbar {
+  position: absolute;
+  left: 0;
+  top: 24px;
+  bottom: 24px;
+  width: 64px;
+  background-color: gainsboro; }
+
+.ToolButton {
+  position: relative; }
+
+.ToolButton-input {
+  opacity: 0;
+  position: absolute;
+  width: 1;
+  height: 1; }
+  .ToolButton-input:checked + .ToolButton-label {
+    background-color: #f0f0f0; }
+
+.ToolButton-label {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  float: left;
+  text-align: center;
+  padding: 8px;
+  background-color: #646464; }
+
+.Viewer {
+  position: absolute;
+  left: 64px;
+  top: 24px;
+  right: 0;
+  bottom: 24px;
+  background-color: #8c8c8c;
+  padding: 8px;
+  overflow: auto; }
+
+.Viewer-canvas {
+  background-color: #fff;
+  cursor: crosshair;
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -o-crisp-edges;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.Viewer-resize-wrapper {
+  position: relative; }
+
+.Viewer-resize {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: #5050fa; }
+  .Viewer-resize.Viewer-resize-top-left {
+    top: -4px;
+    left: -4px;
+    cursor: nw-resize; }
+  .Viewer-resize.Viewer-resize-top-middle {
+    top: -4px;
+    left: calc(50% - 4px);
+    cursor: n-resize; }
+  .Viewer-resize.Viewer-resize-top-right {
+    top: -4px;
+    right: -4px;
+    cursor: ne-resize; }
+  .Viewer-resize.Viewer-resize-middle-left {
+    left: -4px;
+    top: calc(50% - 4px);
+    cursor: w-resize; }
+  .Viewer-resize.Viewer-resize-middle-right {
+    right: -4px;
+    top: calc(50% - 4px);
+    cursor: e-resize; }
+  .Viewer-resize.Viewer-resize-bottom-left {
+    bottom: -4px;
+    left: -4px;
+    cursor: sw-resize; }
+  .Viewer-resize.Viewer-resize-bottom-middle {
+    bottom: -4px;
+    left: calc(50% - 4px);
+    cursor: s-resize; }
+  .Viewer-resize.Viewer-resize-bottom-right {
+    bottom: -4px;
+    right: -4px;
+    cursor: se-resize; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif; }

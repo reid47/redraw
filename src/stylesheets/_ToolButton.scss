@@ -1,0 +1,27 @@
+.ToolButton {
+  position: relative;
+}
+
+.ToolButton-input {
+  opacity: 0;
+  position: absolute;
+  width: 1;
+  height: 1;
+
+  &:checked {
+    + .ToolButton-label {
+      background-color: rgb(240, 240, 240);
+    }
+  }
+}
+
+.ToolButton-label {
+  cursor: pointer;
+  width: $unit * 2;
+  height: $unit * 2;
+  display: inline-block;
+  float: left;
+  text-align: center;
+  padding: $unit;
+  background-color: rgb(100, 100, 100);
+}
