@@ -38,7 +38,6 @@ export class Canvas extends React.Component {
     const {
       canvasWidth,
       canvasHeight,
-      resizeCanvas,
       updateMousePosition,
       cursor,
       pixelSize

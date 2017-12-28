@@ -7,7 +7,11 @@ export class Toolbar extends React.Component {
       mode,
       changeMode,
       pixelSize,
-      changePixelSize
+      changePixelSize,
+      onUndo,
+      onRedo,
+      canUndo,
+      canRedo
     } = this.props;
 
     return <div className="Toolbar" role="toolbar">
@@ -18,6 +22,7 @@ export class Toolbar extends React.Component {
         onSelected={() => changeMode('pencil')}>
         P
       </ToolButton>
+
       <ToolButton
         id="bucket-button"
          // TODO: localize
@@ -26,6 +31,7 @@ export class Toolbar extends React.Component {
         onSelected={() => changeMode('bucket')}>
         B
       </ToolButton>
+
       <input
         type="number"
         min="2"
@@ -33,6 +39,18 @@ export class Toolbar extends React.Component {
         value={pixelSize}
         onChange={evt => changePixelSize(
           Math.max(Math.min(evt.target.valueAsNumber, 100)), 2)} />
+
+      <button
+        type="button"
+        onClick={onUndo}
+        disabled={!canUndo}>
+        undo</button>
+
+      <button
+        type="button"
+        onClick={onRedo}
+        disabled={!canRedo}>
+        redo</button>
     </div>;
   }
 }

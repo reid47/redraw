@@ -1,8 +1,8 @@
 .Toolbar {
   position: absolute;
   left: 0;
-  top: $unit * 3;
-  bottom: $unit * 3;
-  width: $unit * 8;
+  top: 0;
+  right: 0;
+  height: $unit * 8;
   background-color: $control-light-color;
 }

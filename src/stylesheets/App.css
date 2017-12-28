@@ -1,11 +1,10 @@
 .Canvas {
   position: absolute;
-  left: 64px;
-  top: 24px;
+  top: 64px;
+  left: 0;
   right: 0;
   bottom: 24px;
   background-color: #8c8c8c;
-  padding: 8px;
   overflow: auto; }
 
 .Canvas-canvas {
@@ -29,32 +28,6 @@
 .Canvas-resize-wrapper {
   position: relative; }
 
-.Menubar {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  height: 24px;
-  background-color: gainsboro; }
-
-.Resizer {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background-color: #5050fa; }
-  .Resizer.Resizer-middle-right {
-    right: -4px;
-    top: calc(50% - 4px);
-    cursor: e-resize; }
-  .Resizer.Resizer-bottom-middle {
-    bottom: -4px;
-    left: calc(50% - 4px);
-    cursor: s-resize; }
-  .Resizer.Resizer-bottom-right {
-    bottom: -4px;
-    right: -4px;
-    cursor: se-resize; }
-
 .Statusbar {
   position: absolute;
   left: 0;
@@ -66,9 +39,9 @@
 .Toolbar {
   position: absolute;
   left: 0;
-  top: 24px;
-  bottom: 24px;
-  width: 64px;
+  top: 0;
+  right: 0;
+  height: 64px;
   background-color: gainsboro; }
 
 .ToolButton {

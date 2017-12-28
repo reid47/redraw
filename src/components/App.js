@@ -1,6 +1,5 @@
 import React from 'react';
 import { Toolbar } from './Toolbar';
-import { Menubar } from './Menubar';
 import { Statusbar } from './Statusbar';
 import { Canvas } from './Canvas';
 import { doUndo, doRedo, canUndo, canRedo } from '../history';
@@ -65,17 +64,15 @@ export class App extends React.Component {
 
     return (
       <div className="App">
-        <Menubar {...{
-          canUndo: canUndo(),
-          canRedo: canRedo(),
-          onUndo: () => doUndo(this.ctx),
-          onRedo: () => doRedo(this.ctx)
-        }}/>
         <Toolbar {...{
           mode,
           changeMode: this.changeMode,
           pixelSize,
-          changePixelSize: this.changePixelSize
+          changePixelSize: this.changePixelSize,
+          canUndo: canUndo(),
+          canRedo: canRedo(),
+          onUndo: () => doUndo(this.ctx),
+          onRedo: () => doRedo(this.ctx)
         }}/>
         <Canvas {...{
           cursor,
