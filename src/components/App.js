@@ -13,6 +13,7 @@ export class App extends React.Component {
     this.state = {
       mode: 'pencil',
       cursor: actions.pencil.cursor,
+      pixelSize: 10,
       canvasWidth: 640,
       canvasHeight: 480,
       canvasMousePosX: null,
@@ -45,6 +46,12 @@ export class App extends React.Component {
     });
   }
 
+  changePixelSize = newPixelSize => {
+    this.setState({
+      pixelSize: newPixelSize
+    });
+  }
+
   render() {
     const {
       mode,
@@ -52,7 +59,8 @@ export class App extends React.Component {
       canvasWidth,
       canvasHeight,
       canvasMousePosX,
-      canvasMousePosY
+      canvasMousePosY,
+      pixelSize
     } = this.state;
 
     return (
@@ -65,12 +73,15 @@ export class App extends React.Component {
         }}/>
         <Toolbar {...{
           mode,
-          changeMode: this.changeMode
+          changeMode: this.changeMode,
+          pixelSize,
+          changePixelSize: this.changePixelSize
         }}/>
         <Canvas {...{
           cursor,
           canvasWidth,
           canvasHeight,
+          pixelSize,
           resizeCanvas: this.resizeCanvas,
           ctxRef: ctx => this.ctx = ctx,
           updateMousePosition: (newX, newY) => this.setState({

@@ -1,5 +1,11 @@
 import React from 'react';
-import { Resizer } from './Resizer';
+
+const calculateBackground = pixelSize => {
+  return {
+    backgroundSize: `${pixelSize * 2}px ${pixelSize * 2}px`,
+    backgroundPosition: `0 0, ${pixelSize}px ${pixelSize}px`
+  };
+}
 
 export class Canvas extends React.Component {
   componentDidMount() {
@@ -8,16 +14,18 @@ export class Canvas extends React.Component {
   }
 
   handleDrawStart = evt => {
+    const { pixelSize } = this.props;
     const rect = this.canvas.getBoundingClientRect();
-    const x = evt.clientX - rect.left;
-    const y = evt.clientY - rect.top;
+    const x = Math.floor((evt.clientX - rect.left) / pixelSize);
+    const y = Math.floor((evt.clientY - rect.top) / pixelSize);
     this.props.onDrawStart({ ctx: this.ctx, x, y });
   }
 
   handleDrawMove = evt => {
+    const { pixelSize } = this.props;
     const rect = this.canvas.getBoundingClientRect();
-    const x = evt.clientX - rect.left;
-    const y = evt.clientY - rect.top;
+    const x = Math.floor((evt.clientX - rect.left) / pixelSize);
+    const y = Math.floor((evt.clientY - rect.top) / pixelSize);
     this.props.updateMousePosition(x, y);
     this.props.onDrawMove({ ctx: this.ctx, x, y });
   }
@@ -32,26 +40,27 @@ export class Canvas extends React.Component {
       canvasHeight,
       resizeCanvas,
       updateMousePosition,
-      cursor
+      cursor,
+      pixelSize
     } = this.props;
+
+    const { backgroundSize, backgroundPosition } = calculateBackground(pixelSize);
+    // this.ctx && this.ctx.scale(pixelSize, pixelSize);
 
     return <div className="Canvas">
       <div className="Canvas-resize-wrapper" style={{
-        width: canvasWidth, height: canvasHeight
+        width: canvasWidth * pixelSize, height: canvasHeight * pixelSize
       }}>
-        <Resizer
-          direction="middle-right"
-          onResize={w => resizeCanvas(w, null)} />
-        <Resizer
-          direction="bottom-right"
-          onResize={resizeCanvas} />
-        <Resizer
-          direction="bottom-middle"
-          onResize={(w, h) => resizeCanvas(null, h)} />
         <canvas
           ref={el => this.canvas = el}
           className="Canvas-canvas"
-          style={{ cursor: cursor }}
+          style={{
+            cursor,
+            backgroundSize,
+            backgroundPosition,
+            width: canvasWidth * pixelSize,
+            height: canvasHeight * pixelSize
+          }}
           width={canvasWidth}
           height={canvasHeight}
           onTouchStart={evt => this.handleDrawStart(evt.touches[0])}

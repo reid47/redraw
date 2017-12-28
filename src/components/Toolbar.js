@@ -5,7 +5,9 @@ export class Toolbar extends React.Component {
   render() {
     const {
       mode,
-      changeMode
+      changeMode,
+      pixelSize,
+      changePixelSize
     } = this.props;
 
     return <div className="Toolbar" role="toolbar">
@@ -24,6 +26,13 @@ export class Toolbar extends React.Component {
         onSelected={() => changeMode('bucket')}>
         B
       </ToolButton>
+      <input
+        type="number"
+        min="2"
+        max="100"
+        value={pixelSize}
+        onChange={evt => changePixelSize(
+          Math.max(Math.min(evt.target.valueAsNumber, 100)), 2)} />
     </div>;
   }
 }
