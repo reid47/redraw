@@ -1,0 +1,24 @@
+.Resizer {
+  position: absolute;
+  width: $unit / 2;
+  height: $unit / 2;
+  background-color: $resize-icon-color;
+
+  &.Resizer-middle-right {
+    right: -$unit / 2;
+    top: calc(50% - #{$unit / 2});
+    cursor: e-resize;
+  }
+
+  &.Resizer-bottom-middle {
+    bottom: -$unit / 2;
+    left: calc(50% - #{$unit / 2});
+    cursor: s-resize;
+  }
+
+  &.Resizer-bottom-right {
+    bottom: -$unit / 2;
+    right: -$unit / 2;
+    cursor: se-resize;
+  }
+}

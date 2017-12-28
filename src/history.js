@@ -9,7 +9,7 @@ export const pushUndo = ctx => {
 export const doUndo = ctx => {
   if (!undos.length) return;
   const popped = undos.pop();
-  redos.push(popped);
+  redos.push(ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height));
   ctx.putImageData(popped, 0, 0);
 }
 
@@ -20,3 +20,10 @@ export const doRedo = ctx => {
   ctx.putImageData(popped, 0, 0);
 }
 
+export const canUndo = () => {
+  return undos.length > 0;
+}
+
+export const canRedo = () => {
+  return redos.length > 0;
+}

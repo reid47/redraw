@@ -4,17 +4,21 @@ export class Menubar extends React.Component {
   render() {
     const {
       onUndo,
-      onRedo
+      onRedo,
+      canUndo,
+      canRedo
     } = this.props;
 
     return <div className="Menubar" role="toolbar">
       <button
         type="button"
         onClick={onUndo}
-        >undo</button>
+        disabled={!canUndo}>
+        undo</button>
       <button
         type="button"
-        onClick={onRedo}>
+        onClick={onRedo}
+        disabled={!canRedo}>
         redo</button>
     </div>;
   }
