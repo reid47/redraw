@@ -61,6 +61,7 @@ export class Canvas extends React.Component {
           onMouseMove={this.handleDrawMove}
           onMouseOut={evt => {
             updateMousePosition(null, null);
+            this.handleDrawEnd(evt);
           }}
           onMouseUp={this.handleDrawEnd} />
       </div>
