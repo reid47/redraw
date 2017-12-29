@@ -28,13 +28,11 @@ function line(ctx, x1, y1, x2, y2) {
   });
 }
 
-export const pencil = {
-  cursor: 'url(assets/cursor-pencil.png), auto',
-
+export const draw = {
   onDrawStart({ctx, x, y}) {
     pushUndo(ctx);
     this.setState({ canvasMouseDown: true });
-    line(ctx, x, y, x, y);
+    ctx.fillRect(x, y, 1, 1);
     this.canvasMouseDownStartX = x;
     this.canvasMouseDownStartY = y;
   },

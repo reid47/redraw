@@ -10,8 +10,7 @@ export class App extends React.Component {
     super(props);
 
     this.state = {
-      mode: 'pencil',
-      cursor: actions.pencil.cursor,
+      mode: 'draw',
       pixelSize: 10,
       canvasWidth: 640,
       canvasHeight: 480,
@@ -40,8 +39,7 @@ export class App extends React.Component {
 
   changeMode = newMode => {
     this.setState({
-      mode: newMode,
-      cursor: actions[newMode].cursor
+      mode: newMode
     });
   }
 
@@ -54,7 +52,6 @@ export class App extends React.Component {
   render() {
     const {
       mode,
-      cursor,
       canvasWidth,
       canvasHeight,
       canvasMousePosX,
@@ -67,15 +64,13 @@ export class App extends React.Component {
         <Toolbar {...{
           mode,
           changeMode: this.changeMode,
-          pixelSize,
-          changePixelSize: this.changePixelSize,
           canUndo: canUndo(),
           canRedo: canRedo(),
           onUndo: () => doUndo(this.ctx),
           onRedo: () => doRedo(this.ctx)
         }}/>
+
         <Canvas {...{
-          cursor,
           canvasWidth,
           canvasHeight,
           pixelSize,
@@ -89,9 +84,15 @@ export class App extends React.Component {
           onDrawMove: actions[mode].onDrawMove.bind(this),
           onDrawEnd: actions[mode].onDrawEnd.bind(this),
         }}/>
-        <Statusbar
-          mouseX={canvasMousePosX}
-          mouseY={canvasMousePosY} />
+
+        <Statusbar {...{
+          canvasWidth,
+          canvasHeight,
+          pixelSize,
+          changePixelSize: this.changePixelSize,
+          mouseX: canvasMousePosX,
+          mouseY: canvasMousePosY
+        }}/>
       </div>
     );
   }

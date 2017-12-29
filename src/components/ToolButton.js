@@ -3,27 +3,25 @@ import React from 'react';
 export class ToolButton extends React.Component {
   render() {
     const {
-      id,
-      title,
+      image,
+      active,
       children,
-      onSelected,
       ...props
     } = this.props;
 
-    return <div className="ToolButton">
-      <input
-        id={id}
-        type="radio"
-        className="ToolButton-input"
-        name="tool-buttons"
-        onChange={evt => evt.target.checked && onSelected()}
-        {...props}/>
-      <label
-        title={title}
-        htmlFor={id}
-        className="ToolButton-label">
-        {children}
-      </label>
-    </div>;
+    const className = [
+      'ToolButton',
+      active && 'is-active'
+    ].filter(i => i).join(' ');
+
+    return <button
+      type="button"
+      className={className}
+      style={{
+        backgroundImage: `url(assets/${image}.png)`
+      }}
+      {...props}>
+      {children}
+    </button>;
   }
 }

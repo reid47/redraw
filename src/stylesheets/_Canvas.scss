@@ -1,9 +1,9 @@
 .Canvas {
   position: absolute;
-  top: $unit * 8;
+  top: $Toolbar-height;
   left: 0;
   right: 0;
-  bottom: $unit * 3;
+  bottom: $unit * 4;
   background-color: $viewer-bg-color;
   overflow: auto;
 }
@@ -17,6 +17,20 @@
   background-position: 0 0, 5px 5px;
 
   cursor: crosshair;
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -o-crisp-edges;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.Canvas-ghost-canvas {
   image-rendering: optimizeSpeed;
   image-rendering: -moz-crisp-edges;
   image-rendering: -webkit-optimize-contrast;

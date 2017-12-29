@@ -1,9 +1,9 @@
 .Canvas {
   position: absolute;
-  top: 64px;
+  top: 56px;
   left: 0;
   right: 0;
-  bottom: 24px;
+  bottom: 32px;
   background-color: #8c8c8c;
   overflow: auto; }
 
@@ -25,6 +25,19 @@
   -ms-user-select: none;
   user-select: none; }
 
+.Canvas-ghost-canvas {
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -o-crisp-edges;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
 .Canvas-resize-wrapper {
   position: relative; }
 
@@ -33,39 +46,138 @@
   left: 0;
   bottom: 0;
   right: 0;
-  height: 24px;
-  background-color: gainsboro; }
+  height: 32px;
+  background-color: #fff;
+  line-height: 24px;
+  padding-left: 8px;
+  padding-right: 8px;
+  box-sizing: border-box;
+  border-top: 2px solid #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+.Statusbar-zoom-slider-container {
+  display: flex;
+  align-items: center; }
+
+.Statusbar-zoom-label {
+  display: inline-block;
+  margin-right: 8px;
+  width: 100px;
+  text-align: right; }
+
+.Statusbar-zoom-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 8.1px 0; }
+  .Statusbar-zoom-slider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 3.8px;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+    background: #000000;
+    border-radius: 0px;
+    border: 0px solid #010101; }
+  .Statusbar-zoom-slider::-webkit-slider-thumb {
+    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+    border: 2px solid #000000;
+    height: 20px;
+    width: 13px;
+    border-radius: 0px;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -8.1px; }
+  .Statusbar-zoom-slider:focus::-webkit-slider-runnable-track {
+    background: #0d0d0d; }
+  .Statusbar-zoom-slider::-moz-range-track {
+    width: 100%;
+    height: 3.8px;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+    background: #000000;
+    border-radius: 0px;
+    border: 0px solid #010101; }
+  .Statusbar-zoom-slider::-moz-range-thumb {
+    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+    border: 2px solid #000000;
+    height: 20px;
+    width: 13px;
+    border-radius: 0px;
+    background: #ffffff;
+    cursor: pointer; }
+  .Statusbar-zoom-slider::-ms-track {
+    width: 100%;
+    height: 3.8px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent; }
+  .Statusbar-zoom-slider::-ms-fill-lower {
+    background: #000000;
+    border: 0px solid #010101;
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d; }
+  .Statusbar-zoom-slider::-ms-fill-upper {
+    background: #000000;
+    border: 0px solid #010101;
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d; }
+  .Statusbar-zoom-slider::-ms-thumb {
+    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+    border: 2px solid #000000;
+    height: 20px;
+    width: 13px;
+    border-radius: 0px;
+    background: #ffffff;
+    cursor: pointer;
+    height: 3.8px; }
+  .Statusbar-zoom-slider:focus::-ms-fill-lower {
+    background: #000000; }
+  .Statusbar-zoom-slider:focus::-ms-fill-upper {
+    background: #0d0d0d; }
 
 .Toolbar {
   position: absolute;
   left: 0;
   top: 0;
   right: 0;
-  height: 64px;
-  background-color: gainsboro; }
+  height: 56px;
+  background-color: #fff;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #000; }
+
+.Toolbar-input {
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  font-family: inherit; }
 
 .ToolButton {
-  position: relative; }
-
-.ToolButton-input {
-  opacity: 0;
-  position: absolute;
-  width: 1;
-  height: 1; }
-  .ToolButton-input:checked + .ToolButton-label {
-    background-color: #f0f0f0; }
-
-.ToolButton-label {
   cursor: pointer;
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  float: left;
-  text-align: center;
-  padding: 8px;
-  background-color: #646464; }
+  width: 48px;
+  height: 100%;
+  line-height: 84px;
+  font-family: inherit;
+  font-size: 16px;
+  box-sizing: border-box;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  background-position: center 8px;
+  border: none; }
+  .ToolButton[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed; }
+  .ToolButton.is-active {
+    background-color: #ddd; }
+  .ToolButton:not([disabled]):hover {
+    background-color: #eee; }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif; }
+  font-family: 'VT323', monospace; }

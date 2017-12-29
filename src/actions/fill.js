@@ -2,9 +2,7 @@ import { pushUndo } from '../history';
 
 const fillColor = [0, 0, 0, 255];
 
-export const bucket = {
-  cursor: 'url(assets/cursor-pencil.png), auto',
-
+export const fill = {
   onDrawStart({ctx, x, y}) {
     const [r0, g0, b0, a0] = fillColor;
     const [r1, g1, b1, a1] = ctx.getImageData(x, y, 1, 1).data;

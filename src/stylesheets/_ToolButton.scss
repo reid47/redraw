@@ -1,27 +1,29 @@
 .ToolButton {
-  position: relative;
-}
+  cursor: pointer;
+  width: $unit * 6;
+  height: 100%;
+  line-height: $Toolbar-height * 2 - $unit * 3.5;
+  font-family: inherit;
+  font-size: 16px;
+  box-sizing: border-box;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  background-position: center $unit;
+  border: none;
 
-.ToolButton-input {
-  opacity: 0;
-  position: absolute;
-  width: 1;
-  height: 1;
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 
-  &:checked {
-    + .ToolButton-label {
-      background-color: rgb(240, 240, 240);
+  &.is-active {
+    background-color: #ddd;
+  }
+
+  &:not([disabled]) {
+    &:hover {
+      background-color: #eee;
     }
   }
-}
-
-.ToolButton-label {
-  cursor: pointer;
-  width: $unit * 2;
-  height: $unit * 2;
-  display: inline-block;
-  float: left;
-  text-align: center;
-  padding: $unit;
-  background-color: rgb(100, 100, 100);
 }

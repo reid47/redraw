@@ -1,15 +1,9 @@
 import React from 'react';
 
-const calculateBackground = pixelSize => {
-  return {
-    backgroundSize: `${pixelSize * 2}px ${pixelSize * 2}px`,
-    backgroundPosition: `0 0, ${pixelSize}px ${pixelSize}px`
-  };
-}
-
 export class Canvas extends React.Component {
   componentDidMount() {
     this.ctx = this.canvas.getContext('2d');
+    this.ghostCtx = this.ghostCanvas.getContext('2d');
     this.props.ctxRef(this.ctx);
   }
 
@@ -18,7 +12,7 @@ export class Canvas extends React.Component {
     const rect = this.canvas.getBoundingClientRect();
     const x = Math.floor((evt.clientX - rect.left) / pixelSize);
     const y = Math.floor((evt.clientY - rect.top) / pixelSize);
-    this.props.onDrawStart({ ctx: this.ctx, x, y });
+    this.props.onDrawStart({ ctx: this.ctx, x, y, ghostCtx: this.ghostCtx });
   }
 
   handleDrawMove = evt => {
@@ -27,11 +21,11 @@ export class Canvas extends React.Component {
     const x = Math.floor((evt.clientX - rect.left) / pixelSize);
     const y = Math.floor((evt.clientY - rect.top) / pixelSize);
     this.props.updateMousePosition(x, y);
-    this.props.onDrawMove({ ctx: this.ctx, x, y });
+    this.props.onDrawMove({ ctx: this.ctx, x, y, ghostCtx: this.ghostCtx });
   }
 
   handleDrawEnd = evt => {
-    this.props.onDrawEnd({ ctx: this.ctx, evt });
+    this.props.onDrawEnd({ ctx: this.ctx, evt, ghostCtx: this.ghostCtx });
   }
 
   render() {
@@ -39,12 +33,8 @@ export class Canvas extends React.Component {
       canvasWidth,
       canvasHeight,
       updateMousePosition,
-      cursor,
       pixelSize
     } = this.props;
-
-    const { backgroundSize, backgroundPosition } = calculateBackground(pixelSize);
-    // this.ctx && this.ctx.scale(pixelSize, pixelSize);
 
     return <div className="Canvas">
       <div className="Canvas-resize-wrapper" style={{
@@ -54,9 +44,9 @@ export class Canvas extends React.Component {
           ref={el => this.canvas = el}
           className="Canvas-canvas"
           style={{
-            cursor,
-            backgroundSize,
-            backgroundPosition,
+            position: 'absolute',
+            backgroundSize: `${pixelSize * 2}px ${pixelSize * 2}px`,
+            backgroundPosition: `0 0, ${pixelSize}px ${pixelSize}px`,
             width: canvasWidth * pixelSize,
             height: canvasHeight * pixelSize
           }}
@@ -72,6 +62,17 @@ export class Canvas extends React.Component {
             this.handleDrawEnd(evt);
           }}
           onMouseUp={this.handleDrawEnd} />
+        <canvas
+          ref={el => this.ghostCanvas = el}
+          className="Canvas-ghost-canvas"
+          width={canvasWidth}
+          height={canvasHeight}
+          style={{
+            pointerEvents: 'none',
+            position: 'absolute',
+            width: canvasWidth * pixelSize,
+            height: canvasHeight * pixelSize
+          }} />
       </div>
     </div>;
   }

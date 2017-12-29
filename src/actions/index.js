@@ -1,2 +1,3 @@
-export { pencil } from './pencil';
-export { bucket } from './bucket';
+export { draw } from './draw';
+export { fill } from './fill';
+export { select } from './select';

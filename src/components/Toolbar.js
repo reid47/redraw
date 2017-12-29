@@ -1,13 +1,12 @@
 import React from 'react';
 import { ToolButton } from './ToolButton';
+import { t } from '../translations';
 
 export class Toolbar extends React.Component {
   render() {
     const {
       mode,
       changeMode,
-      pixelSize,
-      changePixelSize,
       onUndo,
       onRedo,
       canUndo,
@@ -16,41 +15,44 @@ export class Toolbar extends React.Component {
 
     return <div className="Toolbar" role="toolbar">
       <ToolButton
-        id="pencil-button"
-        title="Pencil tool" // TODO: localize
-        checked={mode === 'pencil'}
-        onSelected={() => changeMode('pencil')}>
-        P
+        image="pencil2"
+        title={t('drawToolLabel')}
+        active={mode === 'draw'}
+        onClick={() => changeMode('draw')}>
+        {t('drawButtonText')}
       </ToolButton>
 
       <ToolButton
-        id="bucket-button"
-         // TODO: localize
-        title="Fill bucket tool"
-        checked={mode === 'bucket'}
-        onSelected={() => changeMode('bucket')}>
-        B
+        image="bucket3"
+        title={t('fillToolLabel')}
+        active={mode === 'fill'}
+        onClick={() => changeMode('fill')}>
+        {t('fillButtonText')}
       </ToolButton>
 
-      <input
-        type="number"
-        min="2"
-        max="100"
-        value={pixelSize}
-        onChange={evt => changePixelSize(
-          Math.max(Math.min(evt.target.valueAsNumber, 100)), 2)} />
+      <ToolButton
+        image="selection2"
+        title={t('selectToolLabel')}
+        active={mode === 'select'}
+        onClick={() => changeMode('select')}>
+        {t('selectButtonText')}
+      </ToolButton>
 
-      <button
-        type="button"
-        onClick={onUndo}
-        disabled={!canUndo}>
-        undo</button>
+      <ToolButton
+        image="undo"
+        title={t('undoButtonLabel')}
+        disabled={!canUndo}
+        onClick={onUndo}>
+        {t('undoButtonText')}
+      </ToolButton>
 
-      <button
-        type="button"
-        onClick={onRedo}
-        disabled={!canRedo}>
-        redo</button>
+      <ToolButton
+        image="redo"
+        title={t('redoButtonLabel')}
+        disabled={!canRedo}
+        onClick={onRedo}>
+        {t('redoButtonText')}
+      </ToolButton>
     </div>;
   }
 }
