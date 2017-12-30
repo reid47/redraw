@@ -5,6 +5,7 @@ import { ColorBar } from './ColorBar';
 import { Canvas } from './Canvas';
 import { doUndo, doRedo, canUndo, canRedo } from '../history';
 import * as actions from '../actions';
+const noop = () => null;
 
 export class App extends React.Component {
   constructor(props) {
@@ -79,9 +80,9 @@ export class App extends React.Component {
             canvasMousePosX: newX,
             canvasMousePosY: newY
           }),
-          onDrawStart: actions[mode].onDrawStart.bind(this),
-          onDrawMove: actions[mode].onDrawMove.bind(this),
-          onDrawEnd: actions[mode].onDrawEnd.bind(this),
+          onDrawStart: (actions[mode].onDrawStart || noop).bind(this),
+          onDrawMove: (actions[mode].onDrawMove || noop).bind(this),
+          onDrawEnd: (actions[mode].onDrawEnd || noop).bind(this),
         }}/>
 
         <ColorBar {...{

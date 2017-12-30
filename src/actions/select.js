@@ -12,8 +12,8 @@ export const select = {
 
   onDrawMove({evt, ghostCtx, x, y}) {
     if (this.state.canvasMouseDown) {
-      if (x === this.canvasSelectStartX) return;
-      if (y === this.canvasSelectStartY) return;
+      if (x === this.canvasSelectStartX
+        || y === this.canvasSelectStartY) return;
 
       ghostCtx.clearRect(0, 0, ghostCtx.canvas.width, ghostCtx.canvas.height);
       ghostCtx.fillStyle = 'rgba(0, 0, 0, 0.7)';
@@ -47,16 +47,6 @@ export const select = {
         selectionWidth: w,
         selectionHeight: h
       });
-
-      // ghostCtx.strokeStyle = 'white';
-      // ghostCtx.beginPath();
-      // ghostCtx.moveTo(startX, startY);
-      // ghostCtx.lineTo(startX + w, startY);
-      // ghostCtx.lineTo(startX + w, startY + h);
-      // ghostCtx.lineTo(startX, startY + h);
-      // ghostCtx.lineTo(startX, startY);
-      // ghostCtx.closePath();
-      // ghostCtx.stroke();
 
       ghostCtx.clearRect(startX, startY, w, h);
     }

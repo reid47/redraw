@@ -1,5 +1,6 @@
 import { pushUndo } from '../history';
 
+// Thanks to: https://github.com/1j01/jspaint
 function bresenham(x1, y1, x2, y2, callback) {
   x1 = x1 | 0;
   x2 = x2 | 0;

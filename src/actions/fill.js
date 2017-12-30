@@ -1,8 +1,6 @@
 import { pushUndo } from '../history';
 import { toRGBA } from '../to-rgba';
 
-const fillColor = [0, 0, 0, 255];
-
 export const fill = {
   onDrawStart({ctx, x, y}) {
     const [r0, g0, b0, a0] = toRGBA(ctx.fillStyle);
@@ -48,13 +46,5 @@ export const fill = {
     }
 
     ctx.putImageData(imageData, 0, 0);
-  },
-
-  onDrawEnd() {
-    // nothing to do here
-  },
-
-  onDrawMove() {
-    // nothing to do here
   }
 };
