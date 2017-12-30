@@ -1,0 +1,21 @@
+.ColorBar {
+  position: absolute;
+  left: 0;
+  bottom: $unit * 4;
+  right: 0;
+  height: $unit * 5;
+  background-color: #fff;
+  line-height: $unit * 3;
+  padding-left: $unit;
+  padding-right: $unit;
+  box-sizing: border-box;
+  border-top: 2px solid #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ColorBar-current-color {
+  width: $unit * 8;
+  height: $unit * 3;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Toolbar } from './Toolbar';
-import { Statusbar } from './Statusbar';
+import { ToolBar } from './ToolBar';
+import { StatusBar } from './StatusBar';
+import { ColorBar } from './ColorBar';
 import { Canvas } from './Canvas';
 import { doUndo, doRedo, canUndo, canRedo } from '../history';
 import * as actions from '../actions';
@@ -11,6 +12,8 @@ export class App extends React.Component {
 
     this.state = {
       mode: 'draw',
+      currentColor: 'rgba(0, 0, 0, 1)',
+      colorPalette: ['rgba(0, 0, 0, 1)', 'rgba(0, 0, 0, 0)'],
       pixelSize: 10,
       canvasWidth: 640,
       canvasHeight: 480,
@@ -59,12 +62,14 @@ export class App extends React.Component {
       selectionHeight,
       canvasMousePosX,
       canvasMousePosY,
-      pixelSize
+      pixelSize,
+      currentColor,
+      colorPalette
     } = this.state;
 
     return (
       <div className="App">
-        <Toolbar {...{
+        <ToolBar {...{
           mode,
           changeMode: this.changeMode,
           canUndo: canUndo(),
@@ -88,7 +93,12 @@ export class App extends React.Component {
           onDrawEnd: actions[mode].onDrawEnd.bind(this),
         }}/>
 
-        <Statusbar {...{
+        <ColorBar {...{
+          currentColor,
+          colorPalette
+        }}/>
+
+        <StatusBar {...{
           canvasWidth,
           canvasHeight,
           selectionActive,

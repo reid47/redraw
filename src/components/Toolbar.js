@@ -2,7 +2,7 @@ import React from 'react';
 import { ToolButton } from './ToolButton';
 import { t } from '../translations';
 
-export class Toolbar extends React.Component {
+export class ToolBar extends React.Component {
   render() {
     const {
       mode,
@@ -13,7 +13,7 @@ export class Toolbar extends React.Component {
       canRedo
     } = this.props;
 
-    return <div className="Toolbar" role="toolbar">
+    return <div className="ToolBar" role="toolbar">
       <ToolButton
         image="pencil2"
         title={t('drawToolLabel')}
@@ -37,6 +37,8 @@ export class Toolbar extends React.Component {
         onClick={() => changeMode('select')}>
         {t('selectButtonText')}
       </ToolButton>
+
+      <div style={{flexGrow: 1}}/>
 
       <ToolButton
         image="undo"

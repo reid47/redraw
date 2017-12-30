@@ -1,7 +1,7 @@
 import React from 'react';
 import { t } from '../translations';
 
-export class Statusbar extends React.Component {
+export class StatusBar extends React.Component {
   render() {
     const {
       canvasWidth,
@@ -17,26 +17,26 @@ export class Statusbar extends React.Component {
 
     const hasPosition = mouseX !== null && mouseY !== null;
 
-    return <div className="Statusbar">
+    return <div className="StatusBar">
       <div>
         {selectionActive
           ? `${t('selectionSizeLabel')} ${selectionWidth} x ${selectionHeight}`
           : `${t('canvasSizeLabel')} ${canvasWidth} x ${canvasHeight}`}
       </div>
 
-      {hasPosition && <div className="Statusbar-mouseposition">
+      {hasPosition && <div className="StatusBar-mouseposition">
         {t('cursorPositionLabel')} {mouseX}, {mouseY}
       </div>}
 
-      <div className="Statusbar-zoom-slider-container">
+      <div className="StatusBar-zoom-slider-container">
         <label
-          className="Statusbar-zoom-label"
+          className="StatusBar-zoom-label"
           htmlFor="zoom-slider">
           {t('zoomLabel')} {pixelSize}x
         </label>
         <input
           id="zoom-slider"
-          className="Statusbar-zoom-slider"
+          className="StatusBar-zoom-slider"
           type="range"
           min="1"
           max="100"

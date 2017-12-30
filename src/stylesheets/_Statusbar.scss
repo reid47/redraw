@@ -1,4 +1,4 @@
-.Statusbar {
+.StatusBar {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -15,19 +15,19 @@
   align-items: center;
 }
 
-.Statusbar-zoom-slider-container {
+.StatusBar-zoom-slider-container {
   display: flex;
   align-items: center;
 }
 
-.Statusbar-zoom-label {
+.StatusBar-zoom-label {
   display: inline-block;
   margin-right: 8px;
   width: 120px;
   text-align: right;
 }
 
-.Statusbar-zoom-slider {
+.StatusBar-zoom-slider {
   -webkit-appearance: none;
   width: 100px;
   margin: 8.1px 0;
