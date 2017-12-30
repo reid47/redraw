@@ -24,6 +24,7 @@ function bresenham(x1, y1, x2, y2, callback) {
 
 function line(ctx, x1, y1, x2, y2) {
   bresenham(x1, y1, x2, y2, (x,y) => {
+    ctx.clearRect(x, y, 1, 1);
     ctx.fillRect(x, y, 1, 1);
   });
 }
@@ -32,6 +33,7 @@ export const draw = {
   onDrawStart({ctx, x, y}) {
     pushUndo(ctx);
     this.setState({ canvasMouseDown: true });
+    ctx.clearRect(x, y, 1, 1);
     ctx.fillRect(x, y, 1, 1);
     this.canvasMouseDownStartX = x;
     this.canvasMouseDownStartY = y;

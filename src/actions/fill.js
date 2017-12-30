@@ -1,10 +1,11 @@
 import { pushUndo } from '../history';
+import { toRGBA } from '../to-rgba';
 
 const fillColor = [0, 0, 0, 255];
 
 export const fill = {
   onDrawStart({ctx, x, y}) {
-    const [r0, g0, b0, a0] = fillColor;
+    const [r0, g0, b0, a0] = toRGBA(ctx.fillStyle);
     const [r1, g1, b1, a1] = ctx.getImageData(x, y, 1, 1).data;
 
     if (r0 === r1 && g0 === g1 && b0 === b1 && a0 === a1) {

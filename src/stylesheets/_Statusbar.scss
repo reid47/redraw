@@ -1,8 +1,5 @@
 .StatusBar {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  flex: 0 0 auto;
   height: $unit * 4;
   background-color: #fff;
   line-height: $unit * 3;

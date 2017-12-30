@@ -1,8 +1,5 @@
 .ColorBar {
-  position: absolute;
-  left: 0;
-  bottom: $unit * 4;
-  right: 0;
+  flex: 0 0 auto;
   height: $unit * 5;
   background-color: #fff;
   line-height: $unit * 3;
@@ -15,7 +12,31 @@
   align-items: center;
 }
 
+.ColorBar-current-color-bg {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAmUlEQVRoQ+3YwQkDMQwFUbkM99+bXIa2hDl8xF4m10DA479vIae7pxY/997FX686HgD6egMQyAnRE+qEnBBtRIWyQipE/VRIhWgjKpQVUiHqp0IqRBtRoayQClG/dYVmZvV/ofcenTH6/ngA6OcN0IvMCTmhCKFSIeqnQipEG1GhrJAKUT8VUiHaiAplhVSI+qmQCtFGflboA/LNAHg8YxooAAAAAElFTkSuQmCC');
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
+  width: $unit * 8;
+  height: $unit * 3;
+}
+
 .ColorBar-current-color {
   width: $unit * 8;
   height: $unit * 3;
+  border: 2px solid black;
+}
+
+.ColorBar-color-button-bg {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAmUlEQVRoQ+3YwQkDMQwFUbkM99+bXIa2hDl8xF4m10DA479vIae7pxY/997FX686HgD6egMQyAnRE+qEnBBtRIWyQipE/VRIhWgjKpQVUiHqp0IqRBtRoayQClG/dYVmZvV/ofcenTH6/ngA6OcN0IvMCTmhCKFSIeqnQipEG1GhrJAKUT8VUiHaiAplhVSI+qmQCtFGflboA/LNAHg8YxooAAAAAElFTkSuQmCC');
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
+  width: $unit * 3;
+  height: $unit * 3;
+}
+
+.ColorBar-color-button {
+  cursor: pointer;
+  width: $unit * 3;
+  height: $unit * 3;
+  border: 2px solid black;
 }

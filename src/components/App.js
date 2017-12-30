@@ -13,7 +13,13 @@ export class App extends React.Component {
     this.state = {
       mode: 'draw',
       currentColor: 'rgba(0, 0, 0, 1)',
-      colorPalette: ['rgba(0, 0, 0, 1)', 'rgba(0, 0, 0, 0)'],
+      colorPalette: [
+        'rgba(0,0,0,1)',
+        'rgba(0,0,0,0)',
+        'rgba(255,0,0,1)',
+        'rgba(0,255,0,1)',
+        'rgba(0,0,255,1)'
+      ],
       pixelSize: 10,
       canvasWidth: 640,
       canvasHeight: 480,
@@ -23,33 +29,18 @@ export class App extends React.Component {
     };
   }
 
-  resizeCanvas = (newX, newY) => {
-    if (newX && newY) {
-      this.setState({
-        canvasWidth: Math.max(newX, 16),
-        canvasHeight: Math.max(newY, 16)
-      });
-    } else if (newX) {
-      this.setState({
-        canvasWidth: Math.max(newX, 16)
-      });
-    } else if (newY) {
-      this.setState({
-        canvasHeight: Math.max(newY, 16)
-      });
-    }
-  }
+  resizeCanvas = (newX, newY) => this.setState({
+    canvasWidth: Math.max(newX, 2),
+    canvasHeight: Math.max(newY, 2)
+  });
 
-  changeMode = newMode => {
-    this.setState({
-      mode: newMode
-    });
-  }
+  changeMode = newMode => this.setState({ mode: newMode });
 
-  changePixelSize = newPixelSize => {
-    this.setState({
-      pixelSize: newPixelSize
-    });
+  changePixelSize = newPixelSize => this.setState({ pixelSize: newPixelSize });
+
+  changeCurrentColor = newColor => {
+    this.ctx.fillStyle = newColor;
+    this.setState({ currentColor: newColor });
   }
 
   render() {
@@ -95,7 +86,8 @@ export class App extends React.Component {
 
         <ColorBar {...{
           currentColor,
-          colorPalette
+          colorPalette,
+          changeCurrentColor: this.changeCurrentColor
         }}/>
 
         <StatusBar {...{

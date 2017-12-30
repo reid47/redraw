@@ -1,9 +1,5 @@
 .Canvas {
-  position: absolute;
-  top: 56px;
-  left: 0;
-  right: 0;
-  bottom: 72px;
+  flex: 1 1 auto;
   background-color: #8c8c8c;
   overflow: auto; }
 
@@ -41,10 +37,7 @@
   position: relative; }
 
 .ColorBar {
-  position: absolute;
-  left: 0;
-  bottom: 32px;
-  right: 0;
+  flex: 0 0 auto;
   height: 40px;
   background-color: #fff;
   line-height: 24px;
@@ -56,15 +49,33 @@
   justify-content: space-between;
   align-items: center; }
 
-.ColorBar-current-color {
+.ColorBar-current-color-bg {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAmUlEQVRoQ+3YwQkDMQwFUbkM99+bXIa2hDl8xF4m10DA479vIae7pxY/997FX686HgD6egMQyAnRE+qEnBBtRIWyQipE/VRIhWgjKpQVUiHqp0IqRBtRoayQClG/dYVmZvV/ofcenTH6/ngA6OcN0IvMCTmhCKFSIeqnQipEG1GhrJAKUT8VUiHaiAplhVSI+qmQCtFGflboA/LNAHg8YxooAAAAAElFTkSuQmCC");
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
   width: 64px;
   height: 24px; }
 
+.ColorBar-current-color {
+  width: 64px;
+  height: 24px;
+  border: 2px solid black; }
+
+.ColorBar-color-button-bg {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAmUlEQVRoQ+3YwQkDMQwFUbkM99+bXIa2hDl8xF4m10DA479vIae7pxY/997FX686HgD6egMQyAnRE+qEnBBtRIWyQipE/VRIhWgjKpQVUiHqp0IqRBtRoayQClG/dYVmZvV/ofcenTH6/ngA6OcN0IvMCTmhCKFSIeqnQipEG1GhrJAKUT8VUiHaiAplhVSI+qmQCtFGflboA/LNAHg8YxooAAAAAElFTkSuQmCC");
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
+  width: 24px;
+  height: 24px; }
+
+.ColorBar-color-button {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border: 2px solid black; }
+
 .StatusBar {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  flex: 0 0 auto;
   height: 32px;
   background-color: #fff;
   line-height: 24px;
@@ -151,10 +162,7 @@
     background: #0d0d0d; }
 
 .ToolBar {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
+  flex: 0 0 auto;
   height: 56px;
   background-color: #fff;
   box-sizing: border-box;
@@ -189,6 +197,9 @@
   .ToolButton:not([disabled]):hover {
     background-color: #eee; }
 
+*, *:after, *:before {
+  box-sizing: border-box; }
+
 html, body {
   margin: 0;
   padding: 0;
@@ -200,5 +211,6 @@ html, body {
   height: 100%;
   width: 100%; }
 
-*, *:after, *:before {
-  box-sizing: border-box; }
+.App {
+  display: flex;
+  flex-direction: column; }

@@ -1,8 +1,5 @@
 .ToolBar {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
+  flex: 0 0 auto;
   height: $ToolBar-height;
   background-color: #fff;
   box-sizing: border-box;

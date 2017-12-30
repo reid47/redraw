@@ -1,9 +1,5 @@
 .Canvas {
-  position: absolute;
-  top: $ToolBar-height;
-  left: 0;
-  right: 0;
-  bottom: $unit * 9;
+  flex: 1 1 auto;
   background-color: $viewer-bg-color;
   overflow: auto;
 }

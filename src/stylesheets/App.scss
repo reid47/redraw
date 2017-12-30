@@ -6,6 +6,10 @@
 @import 'ToolBar';
 @import 'ToolButton';
 
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -19,6 +23,7 @@ html, body {
   width: 100%;
 }
 
-*, *:after, *:before {
-  box-sizing: border-box;
+.App {
+  display: flex;
+  flex-direction: column;
 }
