@@ -8,8 +8,7 @@
   overflow: auto; }
 
 .Canvas-canvas {
-  background-color: #e6e6e6;
-  background-image: linear-gradient(45deg, white 25%, transparent 25%, transparent 75%, white 75%, white), linear-gradient(45deg, white 25%, transparent 25%, transparent 75%, white 75%, white);
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAmUlEQVRoQ+3YwQkDMQwFUbkM99+bXIa2hDl8xF4m10DA479vIae7pxY/997FX686HgD6egMQyAnRE+qEnBBtRIWyQipE/VRIhWgjKpQVUiHqp0IqRBtRoayQClG/dYVmZvV/ofcenTH6/ngA6OcN0IvMCTmhCKFSIeqnQipEG1GhrJAKUT8VUiHaiAplhVSI+qmQCtFGflboA/LNAHg8YxooAAAAAElFTkSuQmCC");
   background-size: 10px 10px;
   background-position: 0 0, 5px 5px;
   cursor: crosshair;
@@ -64,46 +63,42 @@
 .Statusbar-zoom-label {
   display: inline-block;
   margin-right: 8px;
-  width: 100px;
+  width: 120px;
   text-align: right; }
 
 .Statusbar-zoom-slider {
   -webkit-appearance: none;
-  width: 100%;
+  width: 100px;
   margin: 8.1px 0; }
   .Statusbar-zoom-slider::-webkit-slider-runnable-track {
     width: 100%;
     height: 3.8px;
     cursor: pointer;
-    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
     background: #000000;
     border-radius: 0px;
     border: 0px solid #010101; }
   .Statusbar-zoom-slider::-webkit-slider-thumb {
-    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
     border: 2px solid #000000;
-    height: 20px;
+    height: 16px;
     width: 13px;
     border-radius: 0px;
     background: #ffffff;
     cursor: pointer;
     -webkit-appearance: none;
-    margin-top: -8.1px; }
+    margin-top: -6.1px; }
   .Statusbar-zoom-slider:focus::-webkit-slider-runnable-track {
     background: #0d0d0d; }
   .Statusbar-zoom-slider::-moz-range-track {
     width: 100%;
     height: 3.8px;
     cursor: pointer;
-    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
     background: #000000;
     border-radius: 0px;
     border: 0px solid #010101; }
   .Statusbar-zoom-slider::-moz-range-thumb {
-    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
     border: 2px solid #000000;
-    height: 20px;
-    width: 13px;
+    height: 12px;
+    width: 9px;
     border-radius: 0px;
     background: #ffffff;
     cursor: pointer; }
@@ -117,22 +112,19 @@
   .Statusbar-zoom-slider::-ms-fill-lower {
     background: #000000;
     border: 0px solid #010101;
-    border-radius: 0px;
-    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d; }
+    border-radius: 0px; }
   .Statusbar-zoom-slider::-ms-fill-upper {
     background: #000000;
     border: 0px solid #010101;
-    border-radius: 0px;
-    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d; }
+    border-radius: 0px; }
   .Statusbar-zoom-slider::-ms-thumb {
-    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
     border: 2px solid #000000;
-    height: 20px;
-    width: 13px;
+    height: 12px;
+    width: 9px;
     border-radius: 0px;
     background: #ffffff;
-    cursor: pointer;
-    height: 3.8px; }
+    margin-top: 0px;
+    cursor: pointer; }
   .Statusbar-zoom-slider:focus::-ms-fill-lower {
     background: #000000; }
   .Statusbar-zoom-slider:focus::-ms-fill-upper {
@@ -177,7 +169,16 @@
   .ToolButton:not([disabled]):hover {
     background-color: #eee; }
 
-body {
+html, body {
   margin: 0;
   padding: 0;
-  font-family: 'VT323', monospace; }
+  height: 100%;
+  font-family: 'VT323', monospace;
+  overflow: hidden; }
+
+#root, .App {
+  height: 100%;
+  width: 100%; }
+
+*, *:after, *:before {
+  box-sizing: border-box; }

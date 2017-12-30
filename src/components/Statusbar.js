@@ -6,6 +6,9 @@ export class Statusbar extends React.Component {
     const {
       canvasWidth,
       canvasHeight,
+      selectionActive,
+      selectionWidth,
+      selectionHeight,
       mouseX,
       mouseY,
       pixelSize,
@@ -16,19 +19,21 @@ export class Statusbar extends React.Component {
 
     return <div className="Statusbar">
       <div>
-        {t('canvasSizeLabel')} {canvasWidth} x {canvasHeight}
+        {selectionActive
+          ? `${t('selectionSizeLabel')} ${selectionWidth} x ${selectionHeight}`
+          : `${t('canvasSizeLabel')} ${canvasWidth} x ${canvasHeight}`}
       </div>
 
-      {hasPosition && <div
-        className="Statusbar-mouseposition">
+      {hasPosition && <div className="Statusbar-mouseposition">
         {t('cursorPositionLabel')} {mouseX}, {mouseY}
       </div>}
 
       <div className="Statusbar-zoom-slider-container">
         <label
           className="Statusbar-zoom-label"
-          htmlFor="zoom-slider"
-          >{t('zoomLabel')} {pixelSize}x</label>
+          htmlFor="zoom-slider">
+          {t('zoomLabel')} {pixelSize}x
+        </label>
         <input
           id="zoom-slider"
           className="Statusbar-zoom-slider"

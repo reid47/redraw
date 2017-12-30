@@ -12,7 +12,7 @@ export class Canvas extends React.Component {
     const rect = this.canvas.getBoundingClientRect();
     const x = Math.floor((evt.clientX - rect.left) / pixelSize);
     const y = Math.floor((evt.clientY - rect.top) / pixelSize);
-    this.props.onDrawStart({ ctx: this.ctx, x, y, ghostCtx: this.ghostCtx });
+    this.props.onDrawStart({ evt, ctx: this.ctx, x, y, ghostCtx: this.ghostCtx });
   }
 
   handleDrawMove = evt => {
@@ -21,11 +21,11 @@ export class Canvas extends React.Component {
     const x = Math.floor((evt.clientX - rect.left) / pixelSize);
     const y = Math.floor((evt.clientY - rect.top) / pixelSize);
     this.props.updateMousePosition(x, y);
-    this.props.onDrawMove({ ctx: this.ctx, x, y, ghostCtx: this.ghostCtx });
+    this.props.onDrawMove({ evt, ctx: this.ctx, x, y, ghostCtx: this.ghostCtx });
   }
 
   handleDrawEnd = evt => {
-    this.props.onDrawEnd({ ctx: this.ctx, evt, ghostCtx: this.ghostCtx });
+    this.props.onDrawEnd({ evt, ctx: this.ctx, ghostCtx: this.ghostCtx });
   }
 
   render() {

@@ -5,8 +5,19 @@
 @import 'Toolbar';
 @import 'ToolButton';
 
-body {
+html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
   font-family: 'VT323', monospace;
+  overflow: hidden;
+}
+
+#root, .App {
+  height: 100%;
+  width: 100%;
+}
+
+*, *:after, *:before {
+  box-sizing: border-box;
 }

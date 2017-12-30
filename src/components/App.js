@@ -54,6 +54,9 @@ export class App extends React.Component {
       mode,
       canvasWidth,
       canvasHeight,
+      selectionActive,
+      selectionWidth,
+      selectionHeight,
       canvasMousePosX,
       canvasMousePosY,
       pixelSize
@@ -88,6 +91,9 @@ export class App extends React.Component {
         <Statusbar {...{
           canvasWidth,
           canvasHeight,
+          selectionActive,
+          selectionWidth,
+          selectionHeight,
           pixelSize,
           changePixelSize: this.changePixelSize,
           mouseX: canvasMousePosX,
