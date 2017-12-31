@@ -9,7 +9,7 @@ export const ToolButton = ({
   return <button {...{
     type: 'button',
     className: 'ToolButton' + (active ? ' is-active' : ''),
-    style: { backgroundImage: `url(assets/${image}.png)`},
+    style: { backgroundImage: `url(assets/${image}.png)` },
     ...props
   }}>
     {children}

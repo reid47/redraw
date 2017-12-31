@@ -3,6 +3,8 @@ import { ToolButton } from './ToolButton';
 import { t } from '../translations';
 
 export const SelectionBar = ({
+  selectionActive,
+  canPaste,
   onCut,
   onCopy,
   onPaste,
@@ -12,6 +14,7 @@ export const SelectionBar = ({
     <ToolButton
       image="cut"
       title={t('cutToolLabel')}
+      disabled={!selectionActive}
       onClick={onCut}>
       {t('cutButtonText')}
     </ToolButton>
@@ -19,6 +22,7 @@ export const SelectionBar = ({
     <ToolButton
       image="copy"
       title={t('copyToolLabel')}
+      disabled={!selectionActive}
       onClick={onCopy}>
       {t('copyButtonText')}
     </ToolButton>
@@ -26,6 +30,7 @@ export const SelectionBar = ({
     <ToolButton
       image="paste"
       title={t('pasteToolLabel')}
+      disabled={!canPaste}
       onClick={onPaste}>
       {t('pasteButtonText')}
     </ToolButton>
@@ -33,6 +38,7 @@ export const SelectionBar = ({
     <ToolButton
       image="delete"
       title={t('deleteToolLabel')}
+      disabled={!selectionActive}
       onClick={onDelete}>
       {t('deleteButtonText')}
     </ToolButton>

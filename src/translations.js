@@ -3,7 +3,7 @@ const translations = {
     en: 'draw'
   },
   drawToolLabel: {
-    en: 'Draw tool'
+    en: 'Switch to draw tool'
   },
   fillButtonText: {
     en: 'fill'
@@ -70,6 +70,18 @@ const translations = {
   },
   deleteToolLabel: {
     en: 'Delete selection'
+  },
+  saveButtonText: {
+    en: 'save'
+  },
+  saveButtonLabel: {
+    en: 'Save canvas'
+  },
+  exportButtonText: {
+    en: 'export'
+  },
+  exportButtonLabel: {
+    en: 'Export canvas'
   },
 };
 

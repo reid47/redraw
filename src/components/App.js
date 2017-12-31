@@ -4,7 +4,8 @@ import { StatusBar } from './StatusBar';
 import { ColorBar } from './ColorBar';
 import { SelectionBar } from './SelectionBar';
 import { Canvas } from './Canvas';
-import { doUndo, doRedo, canUndo, canRedo } from '../history';
+import { pushUndo, doUndo, doRedo, canUndo, canRedo } from '../history';
+import { setClipboardData, getClipboardData } from '../clipboard';
 import * as tools from '../tools';
 const noop = () => null;
 
@@ -18,7 +19,7 @@ export class App extends React.Component {
       colorPalette: [
         'rgba(0,0,0,1)',
         'rgba(0,0,0,0)',
-        'rgba(255,0,0,1)',
+        'rgba(255,0,0,0.5)',
         'rgba(0,255,0,1)',
         'rgba(0,0,255,1)'
       ],
@@ -46,15 +47,64 @@ export class App extends React.Component {
   }
 
   cutSelection = () => {
+    pushUndo(this.ctx);
 
+    const cutData = this.ctx.getImageData(
+      this.state.selectionStartX,
+      this.state.selectionStartY,
+      this.state.selectionWidth,
+      this.state.selectionHeight);
+
+    setClipboardData(
+      cutData,
+      this.state.selectionStartX,
+      this.state.selectionStartY,
+      this.state.selectionWidth,
+      this.state.selectionHeight);
+
+    this.ctx.clearRect(
+      this.state.selectionStartX,
+      this.state.selectionStartY,
+      this.state.selectionWidth,
+      this.state.selectionHeight);
+
+    this.setState({ selectionActive: false });
+    this.ghostCtx.clearRect(0, 0, this.ghostCtx.canvas.width, this.ghostCtx.canvas.height);
   }
 
   copySelection = () => {
+    const copiedData = this.ctx.getImageData(
+      this.state.selectionStartX,
+      this.state.selectionStartY,
+      this.state.selectionWidth,
+      this.state.selectionHeight);
 
+    setClipboardData(
+      copiedData,
+      this.state.selectionStartX,
+      this.state.selectionStartY,
+      this.state.selectionWidth,
+      this.state.selectionHeight);
+
+    this.setState({ selectionActive: false });
+    this.ghostCtx.clearRect(0, 0, this.ghostCtx.canvas.width, this.ghostCtx.canvas.height);
   }
 
   pasteFromClipboard = () => {
-
+    const { data, clipboardX, clipboardY, clipboardWidth, clipboardHeight } = getClipboardData();
+    if (!data) return;
+    this.ghostCtx.clearRect(0, 0, this.ghostCtx.canvas.width, this.ghostCtx.canvas.height);
+    this.ghostCtx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+    this.ghostCtx.fillRect(0, 0, this.ghostCtx.canvas.width, this.ghostCtx.canvas.height);
+    this.ghostCtx.putImageData(data, clipboardX, clipboardY);
+    this.setState({
+      movingGhost: true,
+      clipboardData: data,
+      clipboardX,
+      clipboardY,
+      clipboardWidth,
+      clipboardHeight
+    });
   }
 
   deleteSelection = () => {
@@ -67,6 +117,8 @@ export class App extends React.Component {
       canvasWidth,
       canvasHeight,
       selectionActive,
+      selectionStartX,
+      selectionStartY,
       selectionWidth,
       selectionHeight,
       canvasMousePosX,
@@ -93,6 +145,7 @@ export class App extends React.Component {
           pixelSize,
           resizeCanvas: this.resizeCanvas,
           ctxRef: ctx => this.ctx = ctx,
+          ghostCtxRef: ghostCtx => this.ghostCtx = ghostCtx,
           updateMousePosition: (newX, newY) => this.setState({
             canvasMousePosX: newX,
             canvasMousePosY: newY
@@ -102,12 +155,14 @@ export class App extends React.Component {
           onDrawEnd: (tools[mode].onDrawEnd || noop).bind(this),
         }}/>
 
-        <SelectionBar {...{
+        {mode === 'select' && <SelectionBar {...{
+          selectionActive,
+          canPaste: !!(getClipboardData().data),
           onCut: this.cutSelection,
           onCopy: this.copySelection,
           onPaste: this.pasteFromClipboard,
           onDelete: this.deleteSelection
-        }}/>
+        }}/>}
 
         <ColorBar {...{
           currentColor,

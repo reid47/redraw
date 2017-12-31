@@ -5,6 +5,7 @@ export class Canvas extends React.Component {
     this.ctx = this.canvas.getContext('2d');
     this.ghostCtx = this.ghostCanvas.getContext('2d');
     this.props.ctxRef(this.ctx);
+    this.props.ghostCtxRef(this.ghostCtx);
   }
 
   handleDrawStart = evt => {

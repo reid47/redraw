@@ -8,7 +8,9 @@ export const ToolBar = ({
   onUndo,
   onRedo,
   canUndo,
-  canRedo
+  canRedo,
+  onSave,
+  onExport
 }) => {
   return <div className="ToolBar" role="toolbar">
     <ToolButton
@@ -59,6 +61,20 @@ export const ToolBar = ({
       disabled={!canRedo}
       onClick={onRedo}>
       {t('redoButtonText')}
+    </ToolButton>
+
+    <ToolButton
+      image="save"
+      title={t('saveButtonLabel')}
+      onClick={onSave}>
+      {t('saveButtonText')}
+    </ToolButton>
+
+    <ToolButton
+      image="export"
+      title={t('exportButtonLabel')}
+      onClick={onExport}>
+      {t('exportButtonText')}
     </ToolButton>
   </div>;
 }
