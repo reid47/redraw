@@ -2,6 +2,7 @@
   flex: 1 1 auto;
   background-color: $viewer-bg-color;
   overflow: auto;
+  position: relative;
 }
 
 .Canvas-canvas {
@@ -35,8 +36,4 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-.Canvas-resize-wrapper {
-  position: relative;
 }

@@ -37,43 +37,40 @@ export class Canvas extends React.Component {
     } = this.props;
 
     return <div className="Canvas">
-      <div className="Canvas-resize-wrapper" style={{
-        width: canvasWidth * pixelSize, height: canvasHeight * pixelSize
-      }}>
-        <canvas
-          ref={el => this.canvas = el}
-          className="Canvas-canvas"
-          style={{
-            position: 'absolute',
-            backgroundSize: `${pixelSize * 2}px ${pixelSize * 2}px`,
-            backgroundPosition: `0 0, ${pixelSize}px ${pixelSize}px`,
-            width: canvasWidth * pixelSize,
-            height: canvasHeight * pixelSize
-          }}
-          width={canvasWidth}
-          height={canvasHeight}
-          onTouchStart={evt => this.handleDrawStart(evt.touches[0])}
-          onTouchMove={evt => this.handleDrawMove(evt.touches[0])}
-          onTouchEnd={evt => this.handleDrawEnd(evt.touches[0])}
-          onMouseDown={this.handleDrawStart}
-          onMouseMove={this.handleDrawMove}
-          onMouseOut={evt => {
-            updateMousePosition(null, null);
-            this.handleDrawEnd(evt);
-          }}
-          onMouseUp={this.handleDrawEnd} />
-        <canvas
-          ref={el => this.ghostCanvas = el}
-          className="Canvas-ghost-canvas"
-          width={canvasWidth}
-          height={canvasHeight}
-          style={{
-            pointerEvents: 'none',
-            position: 'absolute',
-            width: canvasWidth * pixelSize,
-            height: canvasHeight * pixelSize
-          }} />
-      </div>
+      <canvas
+        ref={el => this.canvas = el}
+        className="Canvas-canvas"
+        style={{
+          position: 'absolute',
+          backgroundSize: `${pixelSize * 2}px ${pixelSize * 2}px`,
+          backgroundPosition: `0 0, ${pixelSize}px ${pixelSize}px`,
+          width: canvasWidth * pixelSize,
+          height: canvasHeight * pixelSize
+        }}
+        width={canvasWidth}
+        height={canvasHeight}
+        onTouchStart={evt => this.handleDrawStart(evt.touches[0])}
+        onTouchMove={evt => this.handleDrawMove(evt.touches[0])}
+        onTouchEnd={evt => this.handleDrawEnd(evt.touches[0])}
+        onMouseDown={this.handleDrawStart}
+        onMouseMove={this.handleDrawMove}
+        onMouseOut={evt => {
+          updateMousePosition(null, null);
+          this.handleDrawEnd(evt);
+        }}
+        onMouseUp={this.handleDrawEnd} />
+
+      <canvas
+        ref={el => this.ghostCanvas = el}
+        className="Canvas-ghost-canvas"
+        width={canvasWidth}
+        height={canvasHeight}
+        style={{
+          pointerEvents: 'none',
+          position: 'absolute',
+          width: canvasWidth * pixelSize,
+          height: canvasHeight * pixelSize
+        }}/>
     </div>;
   }
 }

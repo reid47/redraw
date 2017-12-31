@@ -3,27 +3,38 @@ import { ToolButton } from './ToolButton';
 import { t } from '../translations';
 
 export const SelectionBar = ({
+  onCut,
+  onCopy,
+  onPaste,
+  onDelete
 }) => {
   return <div className="SelectionBar">
     <ToolButton
-      image="pencil2"
+      image="cut"
       title={t('cutToolLabel')}
-      onClick={() => null}>
+      onClick={onCut}>
       {t('cutButtonText')}
     </ToolButton>
 
     <ToolButton
-      image="pencil2"
+      image="copy"
       title={t('copyToolLabel')}
-      onClick={() => null}>
+      onClick={onCopy}>
       {t('copyButtonText')}
     </ToolButton>
 
     <ToolButton
-      image="pencil2"
+      image="paste"
       title={t('pasteToolLabel')}
-      onClick={() => null}>
+      onClick={onPaste}>
       {t('pasteButtonText')}
+    </ToolButton>
+
+    <ToolButton
+      image="delete"
+      title={t('deleteToolLabel')}
+      onClick={onDelete}>
+      {t('deleteButtonText')}
     </ToolButton>
   </div>;
 }

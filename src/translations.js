@@ -65,6 +65,12 @@ const translations = {
   pasteToolLabel: {
     en: 'Paste from clipboard'
   },
+  deleteButtonText: {
+    en: 'delete'
+  },
+  deleteToolLabel: {
+    en: 'Delete selection'
+  },
 };
 
 export const t = (key, locale = 'en') => {

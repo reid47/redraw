@@ -5,7 +5,7 @@ import { ColorBar } from './ColorBar';
 import { SelectionBar } from './SelectionBar';
 import { Canvas } from './Canvas';
 import { doUndo, doRedo, canUndo, canRedo } from '../history';
-import * as actions from '../actions';
+import * as tools from '../tools';
 const noop = () => null;
 
 export class App extends React.Component {
@@ -45,6 +45,22 @@ export class App extends React.Component {
     this.setState({ currentColor: newColor });
   }
 
+  cutSelection = () => {
+
+  }
+
+  copySelection = () => {
+
+  }
+
+  pasteFromClipboard = () => {
+
+  }
+
+  deleteSelection = () => {
+
+  }
+
   render() {
     const {
       mode,
@@ -81,13 +97,16 @@ export class App extends React.Component {
             canvasMousePosX: newX,
             canvasMousePosY: newY
           }),
-          onDrawStart: (actions[mode].onDrawStart || noop).bind(this),
-          onDrawMove: (actions[mode].onDrawMove || noop).bind(this),
-          onDrawEnd: (actions[mode].onDrawEnd || noop).bind(this),
+          onDrawStart: (tools[mode].onDrawStart || noop).bind(this),
+          onDrawMove: (tools[mode].onDrawMove || noop).bind(this),
+          onDrawEnd: (tools[mode].onDrawEnd || noop).bind(this),
         }}/>
 
         <SelectionBar {...{
-
+          onCut: this.cutSelection,
+          onCopy: this.copySelection,
+          onPaste: this.pasteFromClipboard,
+          onDelete: this.deleteSelection
         }}/>
 
         <ColorBar {...{

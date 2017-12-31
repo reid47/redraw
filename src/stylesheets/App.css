@@ -1,7 +1,8 @@
 .Canvas {
   flex: 1 1 auto;
   background-color: #8c8c8c;
-  overflow: auto; }
+  overflow: auto;
+  position: relative; }
 
 .Canvas-canvas {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAmUlEQVRoQ+3YwQkDMQwFUbkM99+bXIa2hDl8xF4m10DA479vIae7pxY/997FX686HgD6egMQyAnRE+qEnBBtRIWyQipE/VRIhWgjKpQVUiHqp0IqRBtRoayQClG/dYVmZvV/ofcenTH6/ngA6OcN0IvMCTmhCKFSIeqnQipEG1GhrJAKUT8VUiHaiAplhVSI+qmQCtFGflboA/LNAHg8YxooAAAAAElFTkSuQmCC");
@@ -32,9 +33,6 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
-
-.Canvas-resize-wrapper {
-  position: relative; }
 
 .ColorBar {
   flex: 0 0 auto;
