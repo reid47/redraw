@@ -1,7 +1,8 @@
 {
   "name": "redraw",
   "version": "0.1.0",
-  "homepage": "https://reid47.github.io/redraw",
+  "author": "Reid Mitchell",
+  "homepage": "http://redraw.reidmitchell.net",
   "dependencies": {
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.2",
