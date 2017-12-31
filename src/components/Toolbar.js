@@ -12,7 +12,7 @@ export const ToolBar = ({
 }) => {
   return <div className="ToolBar" role="toolbar">
     <ToolButton
-      image="pencil2"
+      image="pencil"
       title={t('drawToolLabel')}
       active={mode === 'draw'}
       onClick={() => changeMode('draw')}>
@@ -20,7 +20,7 @@ export const ToolBar = ({
     </ToolButton>
 
     <ToolButton
-      image="bucket3"
+      image="bucket"
       title={t('fillToolLabel')}
       active={mode === 'fill'}
       onClick={() => changeMode('fill')}>
@@ -28,11 +28,19 @@ export const ToolBar = ({
     </ToolButton>
 
     <ToolButton
-      image="selection2"
+      image="selection"
       title={t('selectToolLabel')}
       active={mode === 'select'}
       onClick={() => changeMode('select')}>
       {t('selectButtonText')}
+    </ToolButton>
+
+    <ToolButton
+      image="recolor"
+      title={t('recolorToolLabel')}
+      active={mode === 'recolor'}
+      onClick={() => changeMode('recolor')}>
+      {t('recolorButtonText')}
     </ToolButton>
 
     <div style={{flexGrow: 1}}/>

@@ -11,6 +11,12 @@ const translations = {
   fillToolLabel: {
     en: 'Switch to fill tool'
   },
+  recolorToolLabel: {
+    en: 'Switch to recolor tool'
+  },
+  recolorButtonText: {
+    en: 'recolor'
+  },
   selectButtonText: {
     en: 'select'
   },
@@ -40,7 +46,25 @@ const translations = {
   },
   cursorPositionLabel: {
     en: 'cursor:'
-  }
+  },
+  cutButtonText: {
+    en: 'cut'
+  },
+  cutToolLabel: {
+    en: 'Cut selection'
+  },
+  copyButtonText: {
+    en: 'copy'
+  },
+  copyToolLabel: {
+    en: 'Copy selection'
+  },
+  pasteButtonText: {
+    en: 'paste'
+  },
+  pasteToolLabel: {
+    en: 'Paste from clipboard'
+  },
 };
 
 export const t = (key, locale = 'en') => {

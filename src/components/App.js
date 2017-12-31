@@ -2,6 +2,7 @@ import React from 'react';
 import { ToolBar } from './ToolBar';
 import { StatusBar } from './StatusBar';
 import { ColorBar } from './ColorBar';
+import { SelectionBar } from './SelectionBar';
 import { Canvas } from './Canvas';
 import { doUndo, doRedo, canUndo, canRedo } from '../history';
 import * as actions from '../actions';
@@ -83,6 +84,10 @@ export class App extends React.Component {
           onDrawStart: (actions[mode].onDrawStart || noop).bind(this),
           onDrawMove: (actions[mode].onDrawMove || noop).bind(this),
           onDrawEnd: (actions[mode].onDrawEnd || noop).bind(this),
+        }}/>
+
+        <SelectionBar {...{
+
         }}/>
 
         <ColorBar {...{

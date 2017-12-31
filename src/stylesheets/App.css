@@ -74,6 +74,12 @@
   height: 24px;
   border: 2px solid black; }
 
+.SelectionBar {
+  flex: 0 0 auto;
+  height: 56px;
+  width: 100%;
+  border-top: 2px solid black; }
+
 .StatusBar {
   flex: 0 0 auto;
   height: 32px;
@@ -182,7 +188,7 @@
   height: 100%;
   line-height: 84px;
   font-family: inherit;
-  font-size: 16px;
+  font-size: 14px;
   box-sizing: border-box;
   background-color: transparent;
   background-repeat: no-repeat;
