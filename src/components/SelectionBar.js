@@ -7,8 +7,7 @@ export const SelectionBar = ({
   canPaste,
   onCut,
   onCopy,
-  onPaste,
-  onDelete
+  onPaste
 }) => {
   return <div className="SelectionBar">
     <ToolButton
@@ -33,14 +32,6 @@ export const SelectionBar = ({
       disabled={!canPaste}
       onClick={onPaste}>
       {t('pasteButtonText')}
-    </ToolButton>
-
-    <ToolButton
-      image="delete"
-      title={t('deleteToolLabel')}
-      disabled={!selectionActive}
-      onClick={onDelete}>
-      {t('deleteButtonText')}
     </ToolButton>
   </div>;
 }

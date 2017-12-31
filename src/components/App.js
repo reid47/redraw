@@ -107,10 +107,6 @@ export class App extends React.Component {
     });
   }
 
-  deleteSelection = () => {
-
-  }
-
   render() {
     const {
       mode,
@@ -160,8 +156,7 @@ export class App extends React.Component {
           canPaste: !!(getClipboardData().data),
           onCut: this.cutSelection,
           onCopy: this.copySelection,
-          onPaste: this.pasteFromClipboard,
-          onDelete: this.deleteSelection
+          onPaste: this.pasteFromClipboard
         }}/>}
 
         <ColorBar {...{
