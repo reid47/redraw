@@ -1,10 +1,12 @@
 import React from 'react';
-import { ToolBar } from './ToolBar';
-import { StatusBar } from './StatusBar';
-import { ColorBar } from './ColorBar';
 import { Canvas } from './Canvas';
+import { ColorBar } from './ColorBar';
+import { SaveModal } from './SaveModal';
+import { StatusBar } from './StatusBar';
+import { ToolBar } from './ToolBar';
 import { pushUndo, doUndo, doRedo, canUndo, canRedo } from '../history';
 import { setClipboardData, getClipboardData } from '../clipboard';
+import { toSVG } from '../canvas-helpers';
 import * as tools from '../tools';
 const noop = () => null;
 
@@ -30,7 +32,8 @@ export class App extends React.Component {
       canvasHeight: 480,
       canvasMousePosX: null,
       canvasMousePosY: null,
-      canvasMouseDown: false
+      canvasMouseDown: false,
+      saveModalOpen: true
     };
   }
 
@@ -121,7 +124,8 @@ export class App extends React.Component {
       canvasMousePosY,
       pixelSize,
       currentColor,
-      colorPalette
+      colorPalette,
+      saveModalOpen
     } = this.state;
 
     return (
@@ -137,7 +141,8 @@ export class App extends React.Component {
           canPaste: !!(getClipboardData().data),
           onCut: this.cutSelection,
           onCopy: this.copySelection,
-          onPaste: this.pasteFromClipboard
+          onPaste: this.pasteFromClipboard,
+          onSave: () => this.setState({ saveModalOpen: true })
         }}/>
 
         <Canvas {...{
@@ -172,6 +177,15 @@ export class App extends React.Component {
           changePixelSize: this.changePixelSize,
           mouseX: canvasMousePosX,
           mouseY: canvasMousePosY
+        }}/>
+
+        <SaveModal {...{
+          isOpen: saveModalOpen,
+          onClose: () => this.setState({ saveModalOpen: false }),
+          canvasWidth,
+          canvasHeight,
+          getDataURL: () => this.ctx && this.ctx.canvas.toDataURL(),
+          getSVGData: () => this.ctx && toSVG(this.ctx)
         }}/>
       </div>
     );

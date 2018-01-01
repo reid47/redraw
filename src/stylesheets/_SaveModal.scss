@@ -1,0 +1,53 @@
+.SaveModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7)
+}
+
+.SaveModal-content {
+  background-color: #fff;
+  border: 2px solid #000;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: $unit * 2;
+
+  h1 {
+    margin-top: 0;
+  }
+
+  fieldset {
+    border: 2px solid #000;
+    margin-top: $unit * 2;
+
+    > div {
+      display: inline-block;
+
+      + div {
+        margin-left: $unit * 2;
+      }
+    }
+  }
+}
+
+.SaveModal-close-button {
+  border: none;
+  background-color: transparent;
+  width: $unit * 3;
+  height: $unit * 3;
+  background-size: ($unit * 3) ($unit * 3);
+  position: absolute;
+  right: $unit * 2;
+  top: $unit * 2;
+  cursor: pointer;
+}
+
+.SaveModal-preview {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAmUlEQVRoQ+3YwQkDMQwFUbkM99+bXIa2hDl8xF4m10DA479vIae7pxY/997FX686HgD6egMQyAnRE+qEnBBtRIWyQipE/VRIhWgjKpQVUiHqp0IqRBtRoayQClG/dYVmZvV/ofcenTH6/ngA6OcN0IvMCTmhCKFSIeqnQipEG1GhrJAKUT8VUiHaiAplhVSI+qmQCtFGflboA/LNAHg8YxooAAAAAElFTkSuQmCC');
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
+}

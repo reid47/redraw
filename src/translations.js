@@ -76,6 +76,9 @@ const translations = {
   },
   saveButtonLabel: {
     en: 'Save canvas'
+  },
+  saveDialogCloseButtonLabel: {
+    en: 'Close save dialog'
   }
 };
 
