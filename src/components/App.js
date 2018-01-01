@@ -2,7 +2,6 @@ import React from 'react';
 import { ToolBar } from './ToolBar';
 import { StatusBar } from './StatusBar';
 import { ColorBar } from './ColorBar';
-import { SelectionBar } from './SelectionBar';
 import { Canvas } from './Canvas';
 import { pushUndo, doUndo, doRedo, canUndo, canRedo } from '../history';
 import { setClipboardData, getClipboardData } from '../clipboard';
@@ -19,9 +18,12 @@ export class App extends React.Component {
       colorPalette: [
         'rgba(0,0,0,1)',
         'rgba(0,0,0,0)',
-        'rgba(255,0,0,0.5)',
+        'rgba(255,0,0,1)',
         'rgba(0,255,0,1)',
-        'rgba(0,0,255,1)'
+        'rgba(0,0,255,1)',
+        'rgba(255,255,0,1)',
+        'rgba(255,0,255,1)',
+        'rgba(0,255,255,1)'
       ],
       pixelSize: 10,
       canvasWidth: 640,
@@ -113,8 +115,6 @@ export class App extends React.Component {
       canvasWidth,
       canvasHeight,
       selectionActive,
-      selectionStartX,
-      selectionStartY,
       selectionWidth,
       selectionHeight,
       canvasMousePosX,
@@ -132,7 +132,12 @@ export class App extends React.Component {
           canUndo: canUndo(),
           canRedo: canRedo(),
           onUndo: () => doUndo(this.ctx),
-          onRedo: () => doRedo(this.ctx)
+          onRedo: () => doRedo(this.ctx),
+          selectionActive,
+          canPaste: !!(getClipboardData().data),
+          onCut: this.cutSelection,
+          onCopy: this.copySelection,
+          onPaste: this.pasteFromClipboard
         }}/>
 
         <Canvas {...{
@@ -150,14 +155,6 @@ export class App extends React.Component {
           onDrawMove: (tools[mode].onDrawMove || noop).bind(this),
           onDrawEnd: (tools[mode].onDrawEnd || noop).bind(this),
         }}/>
-
-        {mode === 'select' && <SelectionBar {...{
-          selectionActive,
-          canPaste: !!(getClipboardData().data),
-          onCut: this.cutSelection,
-          onCopy: this.copySelection,
-          onPaste: this.pasteFromClipboard
-        }}/>}
 
         <ColorBar {...{
           currentColor,

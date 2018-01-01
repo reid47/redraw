@@ -10,7 +10,11 @@ export const ToolBar = ({
   canUndo,
   canRedo,
   onSave,
-  onExport
+  selectionActive,
+  canPaste,
+  onCut,
+  onCopy,
+  onPaste
 }) => {
   return <div className="ToolBar" role="toolbar">
     <ToolButton
@@ -48,6 +52,32 @@ export const ToolBar = ({
     <div style={{flexGrow: 1}}/>
 
     <ToolButton
+      image="cut"
+      title={t('cutToolLabel')}
+      disabled={!selectionActive}
+      onClick={onCut}>
+      {t('cutButtonText')}
+    </ToolButton>
+
+    <ToolButton
+      image="copy"
+      title={t('copyToolLabel')}
+      disabled={!selectionActive}
+      onClick={onCopy}>
+      {t('copyButtonText')}
+    </ToolButton>
+
+    <ToolButton
+      image="paste"
+      title={t('pasteToolLabel')}
+      disabled={!canPaste}
+      onClick={onPaste}>
+      {t('pasteButtonText')}
+    </ToolButton>
+
+    <div style={{flexGrow: 1}}/>
+
+    <ToolButton
       image="undo"
       title={t('undoButtonLabel')}
       disabled={!canUndo}
@@ -68,13 +98,6 @@ export const ToolBar = ({
       title={t('saveButtonLabel')}
       onClick={onSave}>
       {t('saveButtonText')}
-    </ToolButton>
-
-    <ToolButton
-      image="export"
-      title={t('exportButtonLabel')}
-      onClick={onExport}>
-      {t('exportButtonText')}
     </ToolButton>
   </div>;
 }

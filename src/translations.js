@@ -76,13 +76,7 @@ const translations = {
   },
   saveButtonLabel: {
     en: 'Save canvas'
-  },
-  exportButtonText: {
-    en: 'export'
-  },
-  exportButtonLabel: {
-    en: 'Export canvas'
-  },
+  }
 };
 
 export const t = (key, locale = 'en') => {
