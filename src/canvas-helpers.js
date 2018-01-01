@@ -13,10 +13,10 @@ export const toSVG = ctx => {
     if (a === 0) continue;
 
     const rgb = `rgb(${r},${g},${b})`;
-    svgParts.push(`<rect x="${x}" y="${y}" width="1" height="1" fill="${rgb}" fill-opacity="${a}"/>`)
+    svgParts.push(`<rect x="${x}" y="${y}" width="1" height="1" fill="${rgb}" fill-opacity="${a / 255}"/>`);
   }
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="640" height="480" viewBox="0 0 ${ctx.canvas.width} ${ctx.canvas.height}">
+  return 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="640" height="480" viewBox="0 0 ${ctx.canvas.width} ${ctx.canvas.height}">
 ${svgParts.join('')}
-</svg>`;
+</svg>`);
 };

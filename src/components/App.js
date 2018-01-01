@@ -33,7 +33,7 @@ export class App extends React.Component {
       canvasMousePosX: null,
       canvasMousePosY: null,
       canvasMouseDown: false,
-      saveModalOpen: true
+      saveModalOpen: false
     };
   }
 

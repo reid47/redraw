@@ -6,7 +6,8 @@ export class SaveModal extends React.Component {
     super(props);
 
     this.state = {
-      format: 'png'
+      format: 'png',
+      pixelScale: 1
     };
   }
 
@@ -21,13 +22,15 @@ export class SaveModal extends React.Component {
     } = this.props;
 
     const {
-      format
+      format,
+      pixelScale
     } = this.state;
 
     if (!isOpen) return null;
 
-    const dataUrl = getDataURL();
-    const svgData = getSVGData();
+    const dataUrl = format === 'png'
+      ? getDataURL()
+      : getSVGData();
 
     // TODO: localize text below!
 
@@ -71,14 +74,27 @@ export class SaveModal extends React.Component {
           </div>
         </fieldset>
 
+        {format === 'png' && <fieldset>
+          <legend>pixel scale:</legend>
+
+          <div>
+            <input
+              type="number"
+              value={pixelScale}
+              min="1"
+              max="100"
+              onChange={evt => this.setState({ pixelScale: evt.target.valueAsNumber })} />
+          </div>
+
+          <div>canvas size: {canvasWidth} x {canvasHeight}</div>
+          <div>exported image size: {canvasWidth * pixelScale} x {canvasHeight * pixelScale}</div>
+        </fieldset>}
+
         <h2>preview (right-click and choose "save image"):</h2>
         <div className="SaveModal-preview" style={{
           backgroundImage: 'url(assets/checkerboard.png)'
         }}>
-          {format === 'png' && <img src={dataUrl} />}
-          {format === 'svg' && <div dangerouslySetInnerHTML={{
-            __html: svgData
-          }}/>}
+          <img src={dataUrl} alt="Exported image"/>
         </div>
       </div>
     </div>;
