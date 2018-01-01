@@ -9,6 +9,8 @@ A pixel art tool, built with React and using the HTML5 Canvas.
 ## Bugs to fix
 
 - [ ] Pasting twice in a row leaves you in a weird state
+- [ ] Undo/redo/undo leaves you in a weird state
+- [ ] Undo/redo buttons only become enabled/disabled on state changes (e.g. when you hover over the canvas), rather than on any pushUndo
 
 ## Improvements to make
 
