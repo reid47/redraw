@@ -13,8 +13,6 @@ A pixel art tool, built with React and the HTML5 Canvas.
 ## Improvements to make
 
 - [ ] Use select tool to save part of canvas
-- [x] Allow save/export of canvas to file
-  - [ ] Actually resize PNGs based on pixel scale
 - [ ] Custom colors/color palettes
 - [ ] Eyedropper tool
 - [ ] Keyboard shortcuts for all buttons/tools
