@@ -188,6 +188,7 @@ export class App extends React.Component {
         <SaveModal {...{
           isOpen: saveModalOpen,
           onClose: () => this.setState({ saveModalOpen: false }),
+          ctx: this.ctx,
           canvasWidth,
           canvasHeight,
           getDataURL: () => this.ctx && this.ctx.canvas.toDataURL(),

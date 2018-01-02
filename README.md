@@ -22,6 +22,7 @@ A pixel art tool, built with React and the HTML5 Canvas.
 - [ ] Allow resizing of canvas
 - [ ] Mobile layout
 - [ ] Optimize exported SVG sizes
+- [ ] Localize save modal text
 
 ## Acknowledgements
 

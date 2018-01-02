@@ -11,6 +11,29 @@ export class SaveModal extends React.Component {
     };
   }
 
+  getPreviewDataURL = () => {
+    const { ctx, canvasWidth, canvasHeight } = this.props;
+    const { pixelScale } = this.state;
+
+    // Create a temporary preview canvas to copy the image data to
+    const previewCanvas = document.createElement('canvas');
+    previewCanvas.setAttribute('width', canvasWidth * pixelScale);
+    previewCanvas.setAttribute('height', canvasHeight * pixelScale);
+    const pCtx = previewCanvas.getContext('2d');
+
+    // Disable image smoothing so the image will scale without blurring
+    pCtx.mozImageSmoothingEnabled = false;
+    pCtx.webkitImageSmoothingEnabled = false;
+    pCtx.msImageSmoothingEnabled = false;
+    pCtx.imageSmoothingEnabled = false;
+
+    // Draw the real canvas data to the preview canvas, scaling it by pixelScale
+    pCtx.drawImage(ctx.canvas, 0, 0, canvasWidth, canvasHeight, 0, 0, canvasWidth * pixelScale, canvasHeight * pixelScale);
+
+    // Return the data URL for the preview canvas
+    return previewCanvas.toDataURL();
+  }
+
   render() {
     const {
       isOpen,
@@ -29,7 +52,7 @@ export class SaveModal extends React.Component {
     if (!isOpen) return null;
 
     const dataUrl = format === 'png'
-      ? getDataURL()
+      ? this.getPreviewDataURL()
       : getSVGData();
 
     // TODO: localize text below!
@@ -82,7 +105,7 @@ export class SaveModal extends React.Component {
               type="number"
               value={pixelScale}
               min="1"
-              max="100"
+              max="10"
               onChange={evt => this.setState({ pixelScale: evt.target.valueAsNumber })} />
           </div>
 
