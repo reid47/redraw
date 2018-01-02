@@ -12,13 +12,18 @@ export class SaveModal extends React.Component {
   }
 
   getPreviewDataURL = () => {
-    const { ctx, canvasWidth, canvasHeight } = this.props;
+    const { ctx, canvasWidth, canvasHeight, selectionActive } = this.props;
     const { pixelScale } = this.state;
+
+    const x = selectionActive ? this.props.selectionStartX : 0;
+    const y = selectionActive ? this.props.selectionStartY : 0;
+    const w = selectionActive ? this.props.selectionWidth : canvasWidth;
+    const h = selectionActive ? this.props.selectionHeight : canvasHeight;
 
     // Create a temporary preview canvas to copy the image data to
     const previewCanvas = document.createElement('canvas');
-    previewCanvas.setAttribute('width', canvasWidth * pixelScale);
-    previewCanvas.setAttribute('height', canvasHeight * pixelScale);
+    previewCanvas.setAttribute('width', w * pixelScale);
+    previewCanvas.setAttribute('height', h * pixelScale);
     const pCtx = previewCanvas.getContext('2d');
 
     // Disable image smoothing so the image will scale without blurring
@@ -28,7 +33,7 @@ export class SaveModal extends React.Component {
     pCtx.imageSmoothingEnabled = false;
 
     // Draw the real canvas data to the preview canvas, scaling it by pixelScale
-    pCtx.drawImage(ctx.canvas, 0, 0, canvasWidth, canvasHeight, 0, 0, canvasWidth * pixelScale, canvasHeight * pixelScale);
+    pCtx.drawImage(ctx.canvas, x, y, w, h, 0, 0, w * pixelScale, h * pixelScale);
 
     // Return the data URL for the preview canvas
     return previewCanvas.toDataURL();
@@ -41,7 +46,8 @@ export class SaveModal extends React.Component {
       getDataURL,
       getSVGData,
       canvasWidth,
-      canvasHeight
+      canvasHeight,
+      selectionActive
     } = this.props;
 
     const {
@@ -55,9 +61,12 @@ export class SaveModal extends React.Component {
       ? this.getPreviewDataURL()
       : getSVGData();
 
+    const originalWidth = selectionActive ? this.props.selectionWidth : canvasWidth;
+    const originalHeight = selectionActive ? this.props.selectionHeight : canvasHeight;
+
     // TODO: localize text below!
 
-    return <div className="SaveModal" role="dialog">
+    return <div className="SaveModal" role="dialog" aria-labelledby="SaveModal-title">
       <div className="SaveModal-content">
         <button
           type="button"
@@ -66,7 +75,7 @@ export class SaveModal extends React.Component {
           style={{ backgroundImage: 'url(assets/close.png)' }}
           onClick={onClose} />
 
-        <h1>save image</h1>
+        <h1 id="SaveModal-title">save image</h1>
 
         <span>
           <b>TIP:</b> You can use the select tool to save only a part of the
@@ -109,15 +118,17 @@ export class SaveModal extends React.Component {
               onChange={evt => this.setState({ pixelScale: evt.target.valueAsNumber })} />
           </div>
 
-          <div>canvas size: {canvasWidth} x {canvasHeight}</div>
-          <div>exported image size: {canvasWidth * pixelScale} x {canvasHeight * pixelScale}</div>
+          <div>{`${selectionActive ? 'selection' : 'canvas'} size: ${originalWidth} x ${originalHeight}`}</div>
+          <div>exported image size: {originalWidth * pixelScale} x {originalHeight * pixelScale}</div>
         </fieldset>}
 
-        <h2>preview (right-click and choose "save image"):</h2>
-        <div className="SaveModal-preview" style={{
-          backgroundImage: 'url(assets/checkerboard.png)'
-        }}>
-          <img src={dataUrl} alt="Export preview"/>
+        <h2>preview (right-click and choose "save image as..."):</h2>
+
+        <div className="SaveModal-preview-wrapper">
+          <div className="SaveModal-preview" style={{
+          }}>
+            <img src={dataUrl} alt="Export preview"/>
+          </div>
         </div>
       </div>
     </div>;

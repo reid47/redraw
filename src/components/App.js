@@ -125,6 +125,8 @@ export class App extends React.Component {
       selectionActive,
       selectionWidth,
       selectionHeight,
+      selectionStartX,
+      selectionStartY,
       canvasMousePosX,
       canvasMousePosY,
       pixelSize,
@@ -191,8 +193,12 @@ export class App extends React.Component {
           ctx: this.ctx,
           canvasWidth,
           canvasHeight,
-          getDataURL: () => this.ctx && this.ctx.canvas.toDataURL(),
-          getSVGData: () => this.ctx && toSVG(this.ctx)
+          getSVGData: () => this.ctx && toSVG(this.ctx),
+          selectionActive,
+          selectionWidth,
+          selectionHeight,
+          selectionStartX,
+          selectionStartY
         }}/>
       </div>
     );

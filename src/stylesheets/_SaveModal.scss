@@ -15,8 +15,8 @@
   top: 50%;
   transform: translate(-50%, -50%);
   padding: $unit * 2;
-  width: 97vw;
-  height: 97vh;
+  max-width: 97vw;
+  max-height: 97vh;
 
   h1 {
     margin-top: 0;
@@ -56,12 +56,19 @@
   cursor: pointer;
 }
 
+.SaveModal-preview-wrapper {
+  overflow: auto;
+  width: 100%;
+  max-height: 400px;
+}
+
 .SaveModal-preview {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAmUlEQVRoQ+3YwQkDMQwFUbkM99+bXIa2hDl8xF4m10DA479vIae7pxY/997FX686HgD6egMQyAnRE+qEnBBtRIWyQipE/VRIhWgjKpQVUiHqp0IqRBtRoayQClG/dYVmZvV/ofcenTH6/ngA6OcN0IvMCTmhCKFSIeqnQipEG1GhrJAKUT8VUiHaiAplhVSI+qmQCtFGflboA/LNAHg8YxooAAAAAElFTkSuQmCC');
   background-size: 10px 10px;
   background-position: 0 0, 5px 5px;
+  display: inline-block;
 
   img {
-    width: 100%;
+    // max-width: 100%;
   }
 }
