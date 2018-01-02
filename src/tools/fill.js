@@ -11,7 +11,8 @@ export const fill = {
       return;
     }
 
-    pushUndo(ctx);
+    pushUndo(ctx, this.forceUpdate());
+
     const imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
     const w = imageData.width;
     const h = imageData.height;

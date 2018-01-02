@@ -6,7 +6,8 @@ export const recolor = {
     const [r0, g0, b0, a0] = toRGBA(ctx.fillStyle);
     const [r1, g1, b1, a1] = ctx.getImageData(x, y, 1, 1).data;
 
-    pushUndo(ctx);
+    pushUndo(ctx, this.forceUpdate);
+
     const imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
 
     for (let i = 0; i < imageData.data.length; i += 4) {
