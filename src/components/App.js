@@ -135,8 +135,8 @@ export class App extends React.Component {
       saveModalOpen
     } = this.state;
 
-    return (
-      <div className="App">
+    return [
+      <div className="App" key="main-content">
         <ToolBar {...{
           mode,
           movingGhost,
@@ -186,21 +186,22 @@ export class App extends React.Component {
           mouseX: canvasMousePosX,
           mouseY: canvasMousePosY
         }}/>
+      </div>,
 
-        <SaveModal {...{
-          isOpen: saveModalOpen,
-          onClose: () => this.setState({ saveModalOpen: false }),
-          ctx: this.ctx,
-          canvasWidth,
-          canvasHeight,
-          getSVGData: () => this.ctx && toSVG(this.ctx),
-          selectionActive,
-          selectionWidth,
-          selectionHeight,
-          selectionStartX,
-          selectionStartY
-        }}/>
-      </div>
-    );
+      <SaveModal {...{
+        key: 'save-modal',
+        isOpen: saveModalOpen,
+        onClose: () => this.setState({ saveModalOpen: false }),
+        ctx: this.ctx,
+        canvasWidth,
+        canvasHeight,
+        getSVGData: () => this.ctx && toSVG(this.ctx),
+        selectionActive,
+        selectionWidth,
+        selectionHeight,
+        selectionStartX,
+        selectionStartY
+      }}/>
+    ];
   }
 }

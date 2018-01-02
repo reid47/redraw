@@ -11,6 +11,31 @@ export class SaveModal extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isOpen && !this.props.isOpen) {
+      // If the modal is about to become open, first save the currently
+      // focused element (probably the "Save" button) so that we can
+      // return focus to it when the modal closes.
+      this.previouslyFocusedElement = document.activeElement;
+      // Also, find any non-disabled inputs/buttons behind the modal and
+      // temporarily disable them so that they aren't focusable while the
+      // modal is open.
+      this.disabledBackgroundElements = document.querySelector('.App').querySelectorAll('input:not([disabled]), button:not([disabled])');
+      this.disabledBackgroundElements.forEach(el => el.setAttribute('disabled', true));
+    } else if (!nextProps.isOpen && this.props.isOpen) {
+      // If the modal is about to become closed, re-enable any temporarily
+      // disabled background elements.
+      if (this.disabledBackgroundElements) {
+        this.disabledBackgroundElements.forEach(el => el.removeAttribute('disabled'));
+      }
+      // And then restore focus to the element that was focused before the
+      // modal opened.
+      if (this.previouslyFocusedElement) {
+        this.previouslyFocusedElement.focus();
+      }
+    }
+  }
+
   getPreviewDataURL = () => {
     const { ctx, canvasWidth, canvasHeight, selectionActive } = this.props;
     const { pixelScale } = this.state;
@@ -77,10 +102,10 @@ export class SaveModal extends React.Component {
 
         <h1 id="SaveModal-title">save image</h1>
 
-        <span>
-          <b>TIP:</b> You can use the select tool to save only a part of the
-          canvas.
-        </span>
+        {!selectionActive && <span>
+          <b>TIP:</b> You can use the select tool to save only part of the
+          canvas!
+        </span>}
 
         <fieldset>
           <legend>export as:</legend>
@@ -125,8 +150,7 @@ export class SaveModal extends React.Component {
         <h2>preview (right-click and choose "save image as..."):</h2>
 
         <div className="SaveModal-preview-wrapper">
-          <div className="SaveModal-preview" style={{
-          }}>
+          <div className="SaveModal-preview">
             <img src={dataUrl} alt="Export preview"/>
           </div>
         </div>

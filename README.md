@@ -9,6 +9,7 @@ A pixel art tool, built with React and the HTML5 Canvas.
 ## Bugs to fix
 
 - [ ] On Edge/IE, pixels are blurry in the canvas (because CSS `image-rendering` doesn't work)
+- [ ] Immediately after pasting, status bar doesn't show selection size (only canvas size)
 
 ## Improvements to make
 
@@ -20,11 +21,10 @@ A pixel art tool, built with React and the HTML5 Canvas.
 - [ ] Mobile layout
 - [ ] Optimize exported SVG sizes
 - [ ] Improve + localize save modal text
-- [ ] Disable all other inputs/buttons when modal is open
 
 ## Acknowledgements
 
-While working on this, I took a lot of inspiration from these awesome projects:
+While working on this, I took a lot of inspiration (and a couple of implementation details) from these awesome projects:
 
 - [Make 8-Bit Art](https://github.com/jennschiffer/make8bitart)
 - [JS Paint](https://github.com/1j01/jspaint)
