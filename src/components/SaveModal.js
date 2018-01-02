@@ -94,7 +94,7 @@ export class SaveModal extends React.Component {
         <div className="SaveModal-preview" style={{
           backgroundImage: 'url(assets/checkerboard.png)'
         }}>
-          <img src={dataUrl} alt="Exported image"/>
+          <img src={dataUrl} alt="Export preview"/>
         </div>
       </div>
     </div>;

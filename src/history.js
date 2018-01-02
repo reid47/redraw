@@ -8,16 +8,16 @@ export const pushUndo = ctx => {
 
 export const doUndo = ctx => {
   if (!undos.length) return;
-  const popped = undos.pop();
+  const data = undos.pop();
   redos.push(ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height));
-  ctx.putImageData(popped, 0, 0);
+  ctx.putImageData(data, 0, 0);
 }
 
 export const doRedo = ctx => {
   if (!redos.length) return;
-  const popped = redos.pop();
-  undos.push(popped);
-  ctx.putImageData(popped, 0, 0);
+  const data = redos.pop();
+  undos.push(ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height));
+  ctx.putImageData(data, 0, 0);
 }
 
 export const canUndo = () => {
