@@ -9,7 +9,6 @@ A pixel art tool, built with React and the HTML5 Canvas.
 ## Bugs to fix
 
 - [ ] On Edge/IE, pixels are blurry in the canvas (because CSS `image-rendering` doesn't work)
-- [ ] Immediately after pasting, status bar doesn't show selection size (only canvas size)
 
 ## Improvements to make
 

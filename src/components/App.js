@@ -109,6 +109,7 @@ export class App extends React.Component {
       clipboardY,
       clipboardWidth,
       clipboardHeight,
+      selectionActive: true,
       selectionStartX: clipboardX,
       selectionStartY: clipboardY,
       selectionWidth: clipboardWidth,
