@@ -15,7 +15,6 @@ A pixel art tool, built with React and the HTML5 Canvas.
 - [ ] Custom colors/color palettes
 - [ ] Eyedropper tool
 - [ ] Keyboard shortcuts for all buttons/tools
-- [ ] Automatically save canvas data to local storage
 - [ ] Allow resizing of canvas
 - [ ] Mobile layout
 - [ ] Optimize exported SVG sizes

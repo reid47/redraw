@@ -1,5 +1,6 @@
 import { pushUndo } from '../history';
 import { toRGBA } from '../to-rgba';
+import { saveCanvasData } from '../storage';
 
 export const fill = {
   onDrawStart({ctx, x, y}) {
@@ -47,5 +48,9 @@ export const fill = {
     }
 
     ctx.putImageData(imageData, 0, 0);
+  },
+
+  onDrawEnd({ctx}) {
+    saveCanvasData(ctx);
   }
 };

@@ -7,6 +7,7 @@ import { ToolBar } from './ToolBar';
 import { pushUndo, doUndo, doRedo, canUndo, canRedo } from '../history';
 import { setClipboardData, getClipboardData } from '../clipboard';
 import { toSVG } from '../canvas-helpers';
+import { saveCanvasData, loadCanvasData } from '../storage';
 import * as tools from '../tools';
 const noop = () => null;
 
@@ -73,6 +74,7 @@ export class App extends React.Component {
       this.state.selectionWidth,
       this.state.selectionHeight);
 
+    saveCanvasData(this.ctx);
     this.setState({ selectionActive: false });
     this.ghostCtx.clearRect(0, 0, this.ghostCtx.canvas.width, this.ghostCtx.canvas.height);
   }
@@ -98,10 +100,12 @@ export class App extends React.Component {
   pasteFromClipboard = () => {
     const { data, clipboardX, clipboardY, clipboardWidth, clipboardHeight } = getClipboardData();
     if (!data) return;
+
     this.ghostCtx.clearRect(0, 0, this.ghostCtx.canvas.width, this.ghostCtx.canvas.height);
     this.ghostCtx.fillStyle = 'rgba(0, 0, 0, 0.7)';
     this.ghostCtx.fillRect(0, 0, this.ghostCtx.canvas.width, this.ghostCtx.canvas.height);
     this.ghostCtx.putImageData(data, clipboardX, clipboardY);
+
     this.setState({
       movingGhost: true,
       clipboardData: data,
@@ -115,6 +119,10 @@ export class App extends React.Component {
       selectionWidth: clipboardWidth,
       selectionHeight: clipboardHeight
     });
+  }
+
+  componentDidMount() {
+    loadCanvasData(this.ctx);
   }
 
   render() {

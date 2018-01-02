@@ -1,4 +1,5 @@
 import { pushUndo } from '../history';
+import { saveCanvasData } from '../storage';
 
 // Thanks to: https://github.com/1j01/jspaint
 function line(ctx, x1, y1, x2, y2) {
@@ -34,8 +35,9 @@ export const draw = {
     this.canvasMouseDownStartY = y;
   },
 
-  onDrawEnd() {
+  onDrawEnd({ctx}) {
     this.setState({ canvasMouseDown: false });
+    saveCanvasData(ctx);
   },
 
   onDrawMove({ctx, x, y}) {

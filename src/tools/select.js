@@ -1,3 +1,5 @@
+import { saveCanvasData } from '../storage';
+
 export const select = {
   onDrawStart({ctx, ghostCtx, x, y}) {
     this.setState({ canvasMouseDown: true, selectionActive: false });
@@ -24,6 +26,7 @@ export const select = {
           this.state.selectionStartY,
           this.state.selectionWidth,
           this.state.selectionHeight);
+        saveCanvasData(ctx);
       }
     }
 
