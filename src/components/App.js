@@ -45,7 +45,20 @@ export class App extends React.Component {
 
   changeMode = newMode => this.setState({ mode: newMode });
 
-  changePixelSize = newPixelSize => this.setState({ pixelSize: newPixelSize });
+  changePixelSize = newPixelSize => {
+    const scrollX = this.canvasContainer.scrollLeft;
+    const scrollY = this.canvasContainer.scrollTop;
+    const scrollWidth = this.canvasContainer.scrollWidth;
+    const scrollHeight = this.canvasContainer.scrollHeight;
+
+    this.setState({ pixelSize: newPixelSize }, () => {
+      const scrollWidthAfterZoom = this.canvasContainer.scrollWidth;
+      const scrollHeightAfterZoom = this.canvasContainer.scrollHeight;
+      this.canvasContainer.scrollTo(
+        scrollWidthAfterZoom * (scrollX / scrollWidth),
+        scrollHeightAfterZoom * (scrollY / scrollHeight));
+    });
+  }
 
   changeCurrentColor = newColor => {
     this.ctx.fillStyle = newColor;
@@ -169,6 +182,7 @@ export class App extends React.Component {
           resizeCanvas: this.resizeCanvas,
           ctxRef: ctx => this.ctx = ctx,
           ghostCtxRef: ghostCtx => this.ghostCtx = ghostCtx,
+          canvasContainerRef: cc => this.canvasContainer = cc,
           updateMousePosition: (newX, newY) => this.setState({
             canvasMousePosX: newX,
             canvasMousePosY: newY

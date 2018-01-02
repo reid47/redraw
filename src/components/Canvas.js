@@ -6,6 +6,7 @@ export class Canvas extends React.Component {
     this.ghostCtx = this.ghostCanvas.getContext('2d');
     this.props.ctxRef(this.ctx);
     this.props.ghostCtxRef(this.ghostCtx);
+    this.props.canvasContainerRef(this.canvasContainer);
   }
 
   handleDrawStart = evt => {
@@ -37,7 +38,7 @@ export class Canvas extends React.Component {
       pixelSize
     } = this.props;
 
-    return <div className="Canvas">
+    return <div className="Canvas" ref={el => this.canvasContainer = el}>
       <canvas
         ref={el => this.canvas = el}
         className="Canvas-canvas"
