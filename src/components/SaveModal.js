@@ -68,7 +68,6 @@ export class SaveModal extends React.Component {
     const {
       isOpen,
       onClose,
-      getDataURL,
       getSVGData,
       canvasWidth,
       canvasHeight,
@@ -82,9 +81,7 @@ export class SaveModal extends React.Component {
 
     if (!isOpen) return null;
 
-    const dataUrl = format === 'png'
-      ? this.getPreviewDataURL()
-      : getSVGData();
+    const dataUrl = format === 'png' ? this.getPreviewDataURL() : getSVGData();
 
     const originalWidth = selectionActive ? this.props.selectionWidth : canvasWidth;
     const originalHeight = selectionActive ? this.props.selectionHeight : canvasHeight;
