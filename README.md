@@ -8,12 +8,12 @@ A pixel art tool, built with React and the HTML5 Canvas.
 
 ## Bugs to fix
 
-- [ ] Pasting twice in a row leaves you in a weird state
 - [ ] Undo/redo buttons only become enabled/disabled on state changes (e.g. when you hover over the canvas), rather than on any pushUndo
 - [ ] On Edge/IE, pixels are blurry in the canvas (because CSS `image-rendering` doesn't work)
 
 ## Improvements to make
 
+- [ ] Use select tool to save part of canvas
 - [x] Allow save/export of canvas to file
   - [ ] Actually resize PNGs based on pixel scale
 - [ ] Custom colors/color palettes
