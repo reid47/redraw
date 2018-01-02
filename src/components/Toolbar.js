@@ -4,6 +4,7 @@ import { t } from '../translations';
 
 export const ToolBar = ({
   mode,
+  movingGhost,
   changeMode,
   onUndo,
   onRedo,
@@ -54,7 +55,7 @@ export const ToolBar = ({
     <ToolButton
       image="cut"
       title={t('cutToolLabel')}
-      disabled={!selectionActive}
+      disabled={!selectionActive || movingGhost}
       onClick={onCut}>
       {t('cutButtonText')}
     </ToolButton>
@@ -62,7 +63,7 @@ export const ToolBar = ({
     <ToolButton
       image="copy"
       title={t('copyToolLabel')}
-      disabled={!selectionActive}
+      disabled={!selectionActive || movingGhost}
       onClick={onCopy}>
       {t('copyButtonText')}
     </ToolButton>
@@ -70,7 +71,7 @@ export const ToolBar = ({
     <ToolButton
       image="paste"
       title={t('pasteToolLabel')}
-      disabled={!canPaste}
+      disabled={!canPaste || movingGhost}
       onClick={onPaste}>
       {t('pasteButtonText')}
     </ToolButton>

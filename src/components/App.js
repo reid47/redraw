@@ -119,6 +119,7 @@ export class App extends React.Component {
   render() {
     const {
       mode,
+      movingGhost,
       canvasWidth,
       canvasHeight,
       selectionActive,
@@ -136,6 +137,7 @@ export class App extends React.Component {
       <div className="App">
         <ToolBar {...{
           mode,
+          movingGhost,
           changeMode: this.changeMode,
           canUndo: canUndo(),
           canRedo: canRedo(),
