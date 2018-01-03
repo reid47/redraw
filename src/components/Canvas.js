@@ -10,11 +10,11 @@ export class Canvas extends React.Component {
   }
 
   handleDrawStart = evt => {
-    const { pixelSize, forceUpdate } = this.props;
+    const { pixelSize, forceUpdate, changeCurrentColor, resetToLastMode } = this.props;
     const rect = this.canvas.getBoundingClientRect();
     const x = Math.floor((evt.clientX - rect.left) / pixelSize);
     const y = Math.floor((evt.clientY - rect.top) / pixelSize);
-    this.props.onDrawStart({ evt, ctx: this.ctx, x, y, ghostCtx: this.ghostCtx, forceUpdate });
+    this.props.onDrawStart({ evt, ctx: this.ctx, x, y, ghostCtx: this.ghostCtx, forceUpdate, changeCurrentColor, resetToLastMode });
   }
 
   handleDrawMove = evt => {

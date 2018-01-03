@@ -39,7 +39,12 @@ export class App extends React.Component {
     canvasHeight: Math.max(newY, 2)
   });
 
-  changeMode = newMode => this.setState({ mode: newMode });
+  changeMode = newMode => {
+    this.setState({
+      lastMode: this.state.mode,
+      mode: newMode
+    });
+  }
 
   changePixelSize = newPixelSize => {
     const scrollX = this.canvasContainer.scrollLeft;
@@ -186,13 +191,17 @@ export class App extends React.Component {
           onDrawStart: (tools[mode].onDrawStart || noop).bind(this),
           onDrawMove: (tools[mode].onDrawMove || noop).bind(this),
           onDrawEnd: (tools[mode].onDrawEnd || noop).bind(this),
-          forceUpdate: () => this.forceUpdate()
+          forceUpdate: () => this.forceUpdate(),
+          resetToLastMode: () => this.changeMode(this.state.lastMode),
+          changeCurrentColor: this.changeCurrentColor
         }}/>
 
         <ColorBar {...{
           currentColor,
           colorPalette,
-          changeCurrentColor: this.changeCurrentColor
+          changeCurrentColor: this.changeCurrentColor,
+          mode,
+          changeMode: this.changeMode
         }}/>
 
         <StatusBar {...{

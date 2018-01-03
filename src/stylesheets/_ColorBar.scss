@@ -8,7 +8,6 @@
   box-sizing: border-box;
   border-top: 2px solid #000;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
@@ -42,10 +41,66 @@
 }
 
 .ColorBar-color-editor {
+  padding-left: $unit;
+  padding-right: $unit;
+  height: $unit * 8;
+
+  div {
+    display: inline-block;
+
+    + div {
+      margin-left: $unit / 2;
+    }
+  }
+
   input {
     background: transparent;
-    border: 2px solid black;
+    border: none;
+    border-bottom: 2px solid black;
+    font-size: inherit;
     font-family: inherit;
     text-align: center;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}
+
+.ColorBar-color-type {
+  display: flex !important;
+  justify-content: space-between;
+  height: $unit * 3;
+
+  input[type="radio"] {
+    opacity: 0;
+    position: absolute;
+
+    &:checked + label {
+      background-color: #ddd;
+    }
+
+    &:focus + label {
+      outline: 1px dotted #212121;
+      outline: 5px auto -webkit-focus-ring-color;
+    }
+  }
+
+  label {
+    border-bottom: 2px solid black;
+    background-color: transparent;
+    font-family: inherit;
+    padding: 0 ($unit / 2);
+    cursor: pointer;
+    width: 33.3333%;
+    height: $unit * 3;
+    line-height: $unit * 2.75;
+    text-align: center;
+
+    &:last-child {
+      cursor: pointer;
+    }
   }
 }

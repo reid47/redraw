@@ -79,6 +79,12 @@ const translations = {
   },
   saveDialogCloseButtonLabel: {
     en: 'Close save dialog'
+  },
+  eyedropperToolLabel: {
+    en: 'Switch to eyedropper tool'
+  },
+  eyedropperButtonText: {
+    en: 'pick'
   }
 };
 
