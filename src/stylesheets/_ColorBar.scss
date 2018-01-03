@@ -1,6 +1,6 @@
 .ColorBar {
   flex: 0 0 auto;
-  height: $unit * 5;
+  height: $unit * 10;
   background-color: #fff;
   line-height: $unit * 3;
   padding-left: $unit;
@@ -17,12 +17,12 @@
   background-size: 10px 10px;
   background-position: 0 0, 5px 5px;
   width: $unit * 8;
-  height: $unit * 3;
+  height: $unit * 8;
 }
 
 .ColorBar-current-color {
   width: $unit * 8;
-  height: $unit * 3;
+  height: $unit * 8;
   border: 2px solid black;
 }
 
@@ -39,4 +39,13 @@
   width: $unit * 3;
   height: $unit * 3;
   border: 2px solid black;
+}
+
+.ColorBar-color-editor {
+  input {
+    background: transparent;
+    border: 2px solid black;
+    font-family: inherit;
+    text-align: center;
+  }
 }

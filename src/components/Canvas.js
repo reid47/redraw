@@ -10,24 +10,25 @@ export class Canvas extends React.Component {
   }
 
   handleDrawStart = evt => {
-    const { pixelSize } = this.props;
+    const { pixelSize, forceUpdate } = this.props;
     const rect = this.canvas.getBoundingClientRect();
     const x = Math.floor((evt.clientX - rect.left) / pixelSize);
     const y = Math.floor((evt.clientY - rect.top) / pixelSize);
-    this.props.onDrawStart({ evt, ctx: this.ctx, x, y, ghostCtx: this.ghostCtx });
+    this.props.onDrawStart({ evt, ctx: this.ctx, x, y, ghostCtx: this.ghostCtx, forceUpdate });
   }
 
   handleDrawMove = evt => {
-    const { pixelSize } = this.props;
+    const { pixelSize, forceUpdate } = this.props;
     const rect = this.canvas.getBoundingClientRect();
     const x = Math.floor((evt.clientX - rect.left) / pixelSize);
     const y = Math.floor((evt.clientY - rect.top) / pixelSize);
     this.props.updateMousePosition(x, y);
-    this.props.onDrawMove({ evt, ctx: this.ctx, x, y, ghostCtx: this.ghostCtx });
+    this.props.onDrawMove({ evt, ctx: this.ctx, x, y, ghostCtx: this.ghostCtx, forceUpdate });
   }
 
   handleDrawEnd = evt => {
-    this.props.onDrawEnd({ evt, ctx: this.ctx, ghostCtx: this.ghostCtx });
+    const { forceUpdate } = this.props;
+    this.props.onDrawEnd({ evt, ctx: this.ctx, ghostCtx: this.ghostCtx, forceUpdate });
   }
 
   render() {

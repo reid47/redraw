@@ -8,6 +8,7 @@ import { pushUndo, doUndo, doRedo, canUndo, canRedo } from '../history';
 import { setClipboardData, getClipboardData } from '../clipboard';
 import { toSVG } from '../canvas-helpers';
 import { saveCanvasData, loadCanvasData } from '../storage';
+import { fromRGBA } from '../rgba';
 import * as tools from '../tools';
 const noop = () => null;
 
@@ -17,16 +18,11 @@ export class App extends React.Component {
 
     this.state = {
       mode: 'draw',
-      currentColor: 'rgba(0, 0, 0, 1)',
+      currentColor: { r: 0, g: 0, b: 0, a: 1 },
       colorPalette: [
-        'rgba(0,0,0,1)',
-        'rgba(0,0,0,0)',
-        'rgba(255,0,0,1)',
-        'rgba(0,255,0,1)',
-        'rgba(0,0,255,1)',
-        'rgba(255,255,0,1)',
-        'rgba(255,0,255,1)',
-        'rgba(0,255,255,1)'
+        { r: 0, g: 0, b: 0, a: 1 },
+        { r: 0, g: 0, b: 0, a: 0 },
+        { r: 255, g: 0, b: 0, a: 1 }
       ],
       pixelSize: 10,
       canvasWidth: 640,
@@ -61,7 +57,7 @@ export class App extends React.Component {
   }
 
   changeCurrentColor = newColor => {
-    this.ctx.fillStyle = newColor;
+    this.ctx.fillStyle = fromRGBA(newColor);
     this.setState({ currentColor: newColor });
   }
 
@@ -190,6 +186,7 @@ export class App extends React.Component {
           onDrawStart: (tools[mode].onDrawStart || noop).bind(this),
           onDrawMove: (tools[mode].onDrawMove || noop).bind(this),
           onDrawEnd: (tools[mode].onDrawEnd || noop).bind(this),
+          forceUpdate: () => this.forceUpdate()
         }}/>
 
         <ColorBar {...{

@@ -28,3 +28,10 @@ export const toRGBA = colorString => {
   // 1x1 rectangle and return that.
   return [...ctx.getImageData(0, 0, 1, 1).data];
 };
+
+/**
+ * Given an object representation of a color (e.g.
+ * {r: 1, g: 1, b: 1, a: 1}), convert it into a string.
+ */
+export const fromRGBA = ({r, g, b, a}) =>
+  `rgba(${r}, ${g}, ${b}, ${a})`;

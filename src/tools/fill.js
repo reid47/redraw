@@ -1,9 +1,9 @@
 import { pushUndo } from '../history';
-import { toRGBA } from '../to-rgba';
+import { toRGBA } from '../rgba';
 import { saveCanvasData } from '../storage';
 
 export const fill = {
-  onDrawStart({ctx, x, y}) {
+  onDrawStart({ctx, x, y, forceUpdate}) {
     const [r0, g0, b0, a0] = toRGBA(ctx.fillStyle);
     const [r1, g1, b1, a1] = ctx.getImageData(x, y, 1, 1).data;
 
@@ -12,7 +12,7 @@ export const fill = {
       return;
     }
 
-    pushUndo(ctx, this.forceUpdate());
+    pushUndo(ctx, forceUpdate);
 
     const imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
     const w = imageData.width;
