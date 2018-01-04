@@ -40,10 +40,14 @@
   border: 2px solid black;
 }
 
-.ColorBar-color-editor {
-  padding-left: $unit;
-  padding-right: $unit;
-  height: $unit * 8;
+.ColorBar-color-inputs {
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  padding: $unit;
+  height: $unit * 5;
+  display: flex;
+  align-items: center;
 
   div {
     display: inline-block;
@@ -52,6 +56,13 @@
       margin-left: $unit / 2;
     }
   }
+}
+
+.ColorBar-color-editor {
+  padding-left: $unit;
+  padding-right: $unit;
+  height: $unit * 8;
+  width: $unit * 25;
 
   input {
     background: transparent;
@@ -60,6 +71,7 @@
     font-size: inherit;
     font-family: inherit;
     text-align: center;
+    max-width: $unit * 14.5;
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
@@ -79,7 +91,9 @@
     position: absolute;
 
     &:checked + label {
-      background-color: #ddd;
+      // background-color: #ddd;
+      background-color: black;
+      color: white;
     }
 
     &:focus + label {

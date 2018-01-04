@@ -8,7 +8,7 @@ import { pushUndo, doUndo, doRedo, canUndo, canRedo } from '../history';
 import { setClipboardData, getClipboardData } from '../clipboard';
 import { toSVG } from '../canvas-helpers';
 import { saveCanvasData, loadCanvasData } from '../storage';
-import { fromRGBA } from '../rgba';
+import { toRGBAString } from '../rgba';
 import * as tools from '../tools';
 const noop = () => null;
 
@@ -18,7 +18,7 @@ export class App extends React.Component {
 
     this.state = {
       mode: 'draw',
-      currentColor: { r: 0, g: 0, b: 0, a: 1 },
+      currentColor: { r: 0, g: 0, b: 0, a: 1, hex: '000000' },
       colorPalette: [
         { r: 0, g: 0, b: 0, a: 1 },
         { r: 0, g: 0, b: 0, a: 0 },
@@ -62,7 +62,7 @@ export class App extends React.Component {
   }
 
   changeCurrentColor = newColor => {
-    this.ctx.fillStyle = fromRGBA(newColor);
+    this.ctx.fillStyle = toRGBAString(newColor);
     this.setState({ currentColor: newColor });
   }
 

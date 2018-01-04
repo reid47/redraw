@@ -33,5 +33,19 @@ export const toRGBA = colorString => {
  * Given an object representation of a color (e.g.
  * {r: 1, g: 1, b: 1, a: 1}), convert it into a string.
  */
-export const fromRGBA = ({r, g, b, a}) =>
+export const toRGBAString = ({r, g, b, a}) =>
   `rgba(${r}, ${g}, ${b}, ${a})`;
+
+export const fromHex = ({hex, a}) => {
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+
+  return {
+    hex,
+    r: isNaN(r) ? 0 : r,
+    g: isNaN(g) ? 0 : g,
+    b: isNaN(b) ? 0 : b,
+    a
+  }
+};
