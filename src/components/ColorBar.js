@@ -1,7 +1,9 @@
 import React from 'react';
 import { ToolButton } from './ToolButton';
-import { toRGBAString, fromHex } from '../rgba';
+import { toRGBAString, fromHex, fromRGBA } from '../rgba';
 import { t } from '../translations';
+
+const normalize = (n, min, max) => (!n || isNaN(n)) ? min : Math.max(min, Math.min(max, n));
 
 export class ColorBar extends React.Component {
   constructor(props) {
@@ -63,48 +65,99 @@ export class ColorBar extends React.Component {
             <input id="ColorBar-color-editor-r"
               type="number" min="0" max="255"
               value={currentColor.r}
-              onChange={evt => changeCurrentColor({
-                r: evt.target.valueAsNumber,
+              onChange={evt => changeCurrentColor(fromRGBA({
+                r: normalize(evt.target.valueAsNumber, 0, 255),
                 g: currentColor.g,
                 b: currentColor.b,
                 a: currentColor.a
-              })}/>
+              }))}/>
           </div>
           <div>
             <label htmlFor="ColorBar-color-editor-g">g:</label>
             <input id="ColorBar-color-editor-g"
               type="number" min="0" max="255"
               value={currentColor.g}
-              onChange={evt => changeCurrentColor({
+              onChange={evt => changeCurrentColor(fromRGBA({
                 r: currentColor.r,
-                g: evt.target.valueAsNumber,
+                g: normalize(evt.target.valueAsNumber, 0, 255),
                 b: currentColor.b,
                 a: currentColor.a
-              })}/>
+              }))}/>
           </div>
           <div>
             <label htmlFor="ColorBar-color-editor-b">b:</label>
             <input id="ColorBar-color-editor-b"
               type="number" min="0" max="255"
               value={currentColor.b}
-              onChange={evt => changeCurrentColor({
+              onChange={evt => changeCurrentColor(fromRGBA({
                 r: currentColor.r,
                 g: currentColor.g,
-                b: evt.target.valueAsNumber,
+                b: normalize(evt.target.valueAsNumber, 0, 255),
                 a: currentColor.a
-              })}/>
+              }))}/>
           </div>
           <div>
             <label htmlFor="ColorBar-color-editor-a">a:</label>
             <input id="ColorBar-color-editor-a"
               type="number" min="0" max="1" step="0.1"
               value={currentColor.a}
-              onChange={evt => changeCurrentColor({
+              onChange={evt => changeCurrentColor(fromRGBA({
                 r: currentColor.r,
                 g: currentColor.g,
                 b: currentColor.b,
-                a: evt.target.valueAsNumber
-              })}/>
+                a: normalize(evt.target.valueAsNumber, 0, 1)
+              }))}/>
+          </div>
+        </div>}
+
+        {this.state.colorMode === 'hsla' && <div className="ColorBar-color-inputs">
+          <div>
+            <label htmlFor="ColorBar-color-editor-h">h:</label>
+            <input id="ColorBar-color-editor-h"
+              type="number" min="0" max="360"
+              value={currentColor.r}
+              onChange={evt => changeCurrentColor(fromRGBA({
+                r: normalize(evt.target.valueAsNumber, 0, 360),
+                g: currentColor.g,
+                b: currentColor.b,
+                a: currentColor.a
+              }))}/>
+          </div>
+          <div>
+            <label htmlFor="ColorBar-color-editor-s">s:</label>
+            <input id="ColorBar-color-editor-s"
+              type="number" min="0" max="100"
+              value={currentColor.g}
+              onChange={evt => changeCurrentColor(fromRGBA({
+                r: currentColor.r,
+                g: normalize(evt.target.valueAsNumber, 0, 100),
+                b: currentColor.b,
+                a: currentColor.a
+              }))}/>
+          </div>
+          <div>
+            <label htmlFor="ColorBar-color-editor-l">l:</label>
+            <input id="ColorBar-color-editor-l"
+              type="number" min="0" max="100"
+              value={currentColor.b}
+              onChange={evt => changeCurrentColor(fromRGBA({
+                r: currentColor.r,
+                g: currentColor.g,
+                b: normalize(evt.target.valueAsNumber, 0, 100),
+                a: currentColor.a
+              }))}/>
+          </div>
+          <div>
+            <label htmlFor="ColorBar-color-editor-a">a:</label>
+            <input id="ColorBar-color-editor-a"
+              type="number" min="0" max="1" step="0.1"
+              value={currentColor.a}
+              onChange={evt => changeCurrentColor(fromRGBA({
+                r: currentColor.r,
+                g: currentColor.g,
+                b: currentColor.b,
+                a: normalize(evt.target.valueAsNumber, 0, 1)
+              }))}/>
           </div>
         </div>}
 
@@ -123,14 +176,12 @@ export class ColorBar extends React.Component {
           <div>
             <label htmlFor="ColorBar-color-editor-a">a:</label>
             <input id="ColorBar-color-editor-a"
-              type="number" min="0" max="255"
+              type="number" min="0" max="1" step="0.1"
               value={currentColor.a}
-              onChange={evt => changeCurrentColor({
-                r: currentColor.r,
-                g: currentColor.g,
-                b: currentColor.b,
-                a: evt.target.valueAsNumber
-              })}/>
+              onChange={evt => changeCurrentColor(fromHex({
+                hex: currentColor.hex,
+                a: normalize(evt.target.valueAsNumber, 0, 1)
+              }))}/>
           </div>
         </div>}
       </div>

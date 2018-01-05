@@ -49,3 +49,16 @@ export const fromHex = ({hex, a}) => {
     a
   }
 };
+
+export const fromRGBA = ({r, g, b, a}) => {
+  const hex = [r, g, b].map(val =>
+    (val < 16 ? '0' : '') + val.toString(16)).join('');
+
+  return {
+    hex,
+    r,
+    g,
+    b,
+    a
+  }
+}
