@@ -195,15 +195,17 @@ export class ColorBar extends React.Component {
         {t('eyedropperButtonText')}
       </ToolButton>
 
-      {colorPalette.map((color, i) => {
-        return <div key={i}
-          className="ColorBar-color-button-bg">
-          <button type="button"
-            className="ColorBar-color-button"
-            style={{ backgroundColor: toRGBAString(color) }}
-            onClick={() => changeCurrentColor(color)} />
-        </div>
-      })}
+      <div className="ColorBar-color-palette">
+        {colorPalette.map((color, i) => {
+          return <div key={i}
+            className="ColorBar-color-button-bg">
+            <button type="button"
+              className="ColorBar-color-button"
+              style={{ backgroundColor: toRGBAString(color) }}
+              onClick={() => changeCurrentColor(color)} />
+          </div>
+        })}
+      </div>
     </div>;
   }
 }
