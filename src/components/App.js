@@ -8,7 +8,8 @@ import { pushUndo, doUndo, doRedo, canUndo, canRedo } from '../history';
 import { setClipboardData, getClipboardData } from '../clipboard';
 import { toSVG } from '../canvas-helpers';
 import { saveCanvasData, loadCanvasData } from '../storage';
-import { toRGBAString, fromRGBA, fromHSLA } from '../rgba';
+import { toRGBAString, fromRGBA } from '../rgba';
+import { defaultPalette } from '../palette';
 import * as tools from '../tools';
 const noop = () => null;
 
@@ -19,23 +20,7 @@ export class App extends React.Component {
     this.state = {
       mode: 'draw',
       currentColor: fromRGBA({ r: 0, g: 0, b: 0, a: 1 }),
-      colorPalette: [
-        fromRGBA({ r: 0, g: 0, b: 0, a: 1 }),
-        fromRGBA({ r: 0, g: 0, b: 0, a: 0 }),
-
-        fromHSLA({ h: 0, s: 100, l: 50, a: 1 }),
-        fromHSLA({ h: 30, s: 100, l: 50, a: 1 }),
-        fromHSLA({ h: 60, s: 100, l: 50, a: 1 }),
-        fromHSLA({ h: 90, s: 100, l: 50, a: 1 }),
-        fromHSLA({ h: 120, s: 100, l: 50, a: 1 }),
-        fromHSLA({ h: 150, s: 100, l: 50, a: 1 }),
-        fromHSLA({ h: 180, s: 100, l: 50, a: 1 }),
-        fromHSLA({ h: 210, s: 100, l: 50, a: 1 }),
-        fromHSLA({ h: 240, s: 100, l: 50, a: 1 }),
-        fromHSLA({ h: 270, s: 100, l: 50, a: 1 }),
-        fromHSLA({ h: 300, s: 100, l: 50, a: 1 }),
-        fromHSLA({ h: 330, s: 100, l: 50, a: 1 }),
-      ],
+      colorPalette: defaultPalette,
       pixelSize: 10,
       canvasWidth: 640,
       canvasHeight: 480,
@@ -51,12 +36,10 @@ export class App extends React.Component {
     canvasHeight: Math.max(newY, 2)
   });
 
-  changeMode = newMode => {
-    this.setState({
-      lastMode: this.state.mode,
-      mode: newMode
-    });
-  }
+  changeMode = newMode => this.setState({
+    lastMode: this.state.mode,
+    mode: newMode
+  });
 
   changePixelSize = newPixelSize => {
     const scrollX = this.canvasContainer.scrollLeft;

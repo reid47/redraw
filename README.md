@@ -12,7 +12,6 @@ A pixel art tool, built with React and the HTML5 Canvas.
 
 ## Improvements to make
 
-- [ ] Custom colors/color palettes
 - [ ] Keyboard shortcuts for all buttons/tools
 - [ ] Allow resizing of canvas
 - [ ] Mobile layout
