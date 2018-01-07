@@ -76,7 +76,6 @@
     position: absolute;
 
     &:checked + label {
-      // background-color: #ddd;
       background-color: black;
       color: white;
     }
@@ -111,7 +110,6 @@
 }
 
 .ColorBar-color-palette {
-  // border: 2px solid black;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
