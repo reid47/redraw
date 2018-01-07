@@ -17,12 +17,12 @@ export const StatusBar = ({
   return <div className="StatusBar">
     <div>
       {selectionActive
-        ? `${t('selectionSizeLabel')} ${selectionWidth} x ${selectionHeight}`
-        : `${t('canvasSizeLabel')} ${canvasWidth} x ${canvasHeight}`}
+        ? t('statusBarSelectionSizeText')(selectionWidth, selectionHeight)
+        : t('statusBarCanvasSizeText')(canvasWidth, canvasHeight)}
     </div>
 
     {hasPosition && <div className="StatusBar-mouseposition">
-      {t('cursorPositionLabel')} {mouseX}, {mouseY}
+      {t('statusBarCursorPositionText')(mouseX, mouseY)}
     </div>}
 
     <div className="StatusBar-zoom-slider-container">

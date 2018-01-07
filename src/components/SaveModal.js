@@ -97,15 +97,12 @@ export class SaveModal extends React.Component {
           style={{ backgroundImage: 'url(assets/close.png)' }}
           onClick={onClose} />
 
-        <h1 id="SaveModal-title">save image</h1>
+        <h1 id="SaveModal-title">{t('saveModalTitle')}</h1>
 
-        {!selectionActive && <span>
-          <b>TIP:</b> You can use the select tool to save only part of the
-          canvas!
-        </span>}
+        {!selectionActive && <span><b>{t('saveModalTipText')}</b> {t('saveModalSelectToolTip')}</span>}
 
         <fieldset>
-          <legend>export as:</legend>
+          <legend>{t('saveModalExportAsLabel')}</legend>
 
           <div>
             <input
@@ -114,7 +111,7 @@ export class SaveModal extends React.Component {
               name="format"
               checked={format === 'png'}
               onChange={evt => evt.target.checked && this.setState({format: 'png'})}/>
-            <label htmlFor="export-as-png">png</label>
+            <label htmlFor="export-as-png">{t('saveModalExportAsPngLabel')}</label>
           </div>
 
           <div>
@@ -124,12 +121,12 @@ export class SaveModal extends React.Component {
               name="format"
               checked={format === 'svg'}
               onChange={evt => evt.target.checked && this.setState({format: 'svg'})}/>
-            <label htmlFor="export-as-svg">svg</label>
+            <label htmlFor="export-as-svg">{t('saveModalExportAsSvgLabel')}</label>
           </div>
         </fieldset>
 
         {format === 'png' && <fieldset>
-          <legend>pixel scale:</legend>
+          <legend>{t('saveModalPixelScaleLabel')}</legend>
 
           <div>
             <input
@@ -140,11 +137,12 @@ export class SaveModal extends React.Component {
               onChange={evt => this.setState({ pixelScale: evt.target.valueAsNumber })} />
           </div>
 
-          <div>{`${selectionActive ? 'selection' : 'canvas'} size: ${originalWidth} x ${originalHeight}`}</div>
-          <div>exported image size: {originalWidth * pixelScale} x {originalHeight * pixelScale}</div>
+          <div>{t(selectionActive ? 'saveModalSelectionSizeText': 'saveModalCanvasSizeText')(originalWidth, originalHeight)}</div>
+          <div>{t('saveModalExportedSizeText')(originalWidth * pixelScale, originalHeight * pixelScale)}</div>
         </fieldset>}
 
-        <h2>preview (right-click and choose "save image as..."):</h2>
+        <h2>{t('saveModalPreviewTitle')}</h2>
+        <p>{t('saveModalSaveInstructions')}</p>
 
         <div className="SaveModal-preview-wrapper">
           <div className="SaveModal-preview">

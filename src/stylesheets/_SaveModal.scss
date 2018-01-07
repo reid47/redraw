@@ -20,6 +20,15 @@
 
   h1 {
     margin-top: 0;
+    margin-bottom: $unit;
+  }
+
+  h2 {
+    margin-bottom: $unit / 2;
+  }
+
+  p {
+    margin-top: 0;
   }
 
   fieldset {

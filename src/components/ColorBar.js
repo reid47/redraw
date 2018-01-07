@@ -37,7 +37,7 @@ export class ColorBar extends React.Component {
             checked={this.state.colorMode === 'rgba'}
             onChange={evt => evt.target.checked && this.setState({ colorMode: 'rgba' })}/>
           <label htmlFor="ColorBar-color-type-rgba">
-            rgba
+            {t('rgbaTabTitle')}
           </label>
 
           <input type="radio"
@@ -46,7 +46,7 @@ export class ColorBar extends React.Component {
             checked={this.state.colorMode === 'hsla'}
             onChange={evt => evt.target.checked && this.setState({ colorMode: 'hsla' })}/>
           <label htmlFor="ColorBar-color-type-hsla">
-            hsla
+            {t('hslaTabTitle')}
           </label>
 
           <input type="radio"
@@ -55,13 +55,13 @@ export class ColorBar extends React.Component {
             checked={this.state.colorMode === 'hex'}
             onChange={evt => evt.target.checked && this.setState({ colorMode: 'hex' })}/>
           <label htmlFor="ColorBar-color-type-hex">
-            hex
+            {t('hexTabTitle')}
           </label>
         </div>
 
         {this.state.colorMode === 'rgba' && <div className="ColorBar-color-inputs">
           <div>
-            <label htmlFor="ColorBar-color-editor-r">r:</label>
+            <label htmlFor="ColorBar-color-editor-r">{t('rInputLabel')}</label>
             <input id="ColorBar-color-editor-r"
               type="number" min="0" max="255"
               value={currentColor.r}
@@ -73,7 +73,7 @@ export class ColorBar extends React.Component {
               }))}/>
           </div>
           <div>
-            <label htmlFor="ColorBar-color-editor-g">g:</label>
+            <label htmlFor="ColorBar-color-editor-g">{t('gInputLabel')}</label>
             <input id="ColorBar-color-editor-g"
               type="number" min="0" max="255"
               value={currentColor.g}
@@ -85,7 +85,7 @@ export class ColorBar extends React.Component {
               }))}/>
           </div>
           <div>
-            <label htmlFor="ColorBar-color-editor-b">b:</label>
+            <label htmlFor="ColorBar-color-editor-b">{t('bInputLabel')}</label>
             <input id="ColorBar-color-editor-b"
               type="number" min="0" max="255"
               value={currentColor.b}
@@ -97,7 +97,7 @@ export class ColorBar extends React.Component {
               }))}/>
           </div>
           <div>
-            <label htmlFor="ColorBar-color-editor-a">a:</label>
+            <label htmlFor="ColorBar-color-editor-a">{t('aInputLabel')}</label>
             <input id="ColorBar-color-editor-a"
               type="number" min="0" max="1" step="0.1"
               value={currentColor.a}
@@ -112,7 +112,7 @@ export class ColorBar extends React.Component {
 
         {this.state.colorMode === 'hsla' && <div className="ColorBar-color-inputs">
           <div>
-            <label htmlFor="ColorBar-color-editor-h">h:</label>
+            <label htmlFor="ColorBar-color-editor-h">{t('hInputLabel')}</label>
             <input id="ColorBar-color-editor-h"
               type="number" min="0" max="360"
               value={currentColor.h}
@@ -124,7 +124,7 @@ export class ColorBar extends React.Component {
               }))}/>
           </div>
           <div>
-            <label htmlFor="ColorBar-color-editor-s">s:</label>
+            <label htmlFor="ColorBar-color-editor-s">{t('sInputLabel')}</label>
             <input id="ColorBar-color-editor-s"
               type="number" min="0" max="100"
               value={currentColor.s}
@@ -136,7 +136,7 @@ export class ColorBar extends React.Component {
               }))}/>
           </div>
           <div>
-            <label htmlFor="ColorBar-color-editor-l">l:</label>
+            <label htmlFor="ColorBar-color-editor-l">{t('lInputLabel')}</label>
             <input id="ColorBar-color-editor-l"
               type="number" min="0" max="100"
               value={currentColor.l}
@@ -148,7 +148,7 @@ export class ColorBar extends React.Component {
               }))}/>
           </div>
           <div>
-            <label htmlFor="ColorBar-color-editor-a">a:</label>
+            <label htmlFor="ColorBar-color-editor-a">{t('aInputLabel')}</label>
             <input id="ColorBar-color-editor-a"
               type="number" min="0" max="1" step="0.1"
               value={currentColor.a}
@@ -163,7 +163,7 @@ export class ColorBar extends React.Component {
 
         {this.state.colorMode === 'hex' && <div className="ColorBar-color-inputs">
           <div>
-            <label htmlFor="ColorBar-color-editor-hex">#</label>
+            <label htmlFor="ColorBar-color-editor-hex">{t('hexInputLabel')}</label>
             <input id="ColorBar-color-editor-hex"
               type="text"
               maxLength="6"
@@ -174,7 +174,7 @@ export class ColorBar extends React.Component {
               }))}/>
           </div>
           <div>
-            <label htmlFor="ColorBar-color-editor-a">a:</label>
+            <label htmlFor="ColorBar-color-editor-a">{t('aInputLabel')}</label>
             <input id="ColorBar-color-editor-a"
               type="number" min="0" max="1" step="0.1"
               value={currentColor.a}
