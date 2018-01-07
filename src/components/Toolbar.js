@@ -22,6 +22,7 @@ export const ToolBar = ({
       image="pencil"
       title={t('drawToolLabel')}
       active={mode === 'draw'}
+      disabled={movingGhost}
       onClick={() => changeMode('draw')}>
       {t('drawButtonText')}
     </ToolButton>
@@ -30,6 +31,7 @@ export const ToolBar = ({
       image="bucket"
       title={t('fillToolLabel')}
       active={mode === 'fill'}
+      disabled={movingGhost}
       onClick={() => changeMode('fill')}>
       {t('fillButtonText')}
     </ToolButton>
@@ -46,6 +48,7 @@ export const ToolBar = ({
       image="recolor"
       title={t('recolorToolLabel')}
       active={mode === 'recolor'}
+      disabled={movingGhost}
       onClick={() => changeMode('recolor')}>
       {t('recolorButtonText')}
     </ToolButton>
@@ -81,7 +84,7 @@ export const ToolBar = ({
     <ToolButton
       image="undo"
       title={t('undoButtonLabel')}
-      disabled={!canUndo}
+      disabled={!canUndo || movingGhost}
       onClick={onUndo}>
       {t('undoButtonText')}
     </ToolButton>
@@ -89,7 +92,7 @@ export const ToolBar = ({
     <ToolButton
       image="redo"
       title={t('redoButtonLabel')}
-      disabled={!canRedo}
+      disabled={!canRedo || movingGhost}
       onClick={onRedo}>
       {t('redoButtonText')}
     </ToolButton>
@@ -97,6 +100,7 @@ export const ToolBar = ({
     <ToolButton
       image="save"
       title={t('saveButtonLabel')}
+      disabled={movingGhost}
       onClick={onSave}>
       {t('saveButtonText')}
     </ToolButton>
