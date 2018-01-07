@@ -188,6 +188,7 @@ export class ColorBar extends React.Component {
 
       <ToolButton
         image="eyedropper"
+        className="ColorBar-eyedropper-tool-button"
         title={t('eyedropperToolLabel')}
         active={mode === 'eyedropper'}
         onClick={() => changeMode('eyedropper')}>

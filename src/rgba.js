@@ -1,14 +1,7 @@
 const cache = {};
 export const toRGBA = colorString => {
-  // Since the canvas operations might be expensive, and
-  // since the same color string should always give us
-  // the same RGBA values, we cache the results.
   if (cache[colorString]) return cache[colorString];
 
-  // To do the conversion, we rely on the canvas' ability
-  // to take in these number strings and render things
-  // using RGBA. Create a 1x1 rectangle on a temporary
-  // canvas with the given color.
   const canvas = document.createElement('canvas');
   canvas.width = 1;
   canvas.height = 1;
@@ -16,8 +9,6 @@ export const toRGBA = colorString => {
   ctx.fillStyle = colorString;
   ctx.fillRect(0, 0, 1, 1);
 
-  // Then, grab the pixel data from the canvas for that
-  // 1x1 rectangle and return that.
   return [...ctx.getImageData(0, 0, 1, 1).data];
 };
 
@@ -35,11 +26,16 @@ const rgbToHsl = ({r, g, b}) => {
   const s = minRGB === maxRGB ? 0 :
     l < 0.5 ? diffMaxMin / (maxRGB + minRGB) :
       diffMaxMin / (2.0 - maxRGB - minRGB);
-  const h = (r1 === maxRGB ? (g1 - b1) / diffMaxMin :
-    g1 === maxRGB ? 2.0 + (b1 - r1) / diffMaxMin :
-    4.0 + (r1 - g1) / diffMaxMin) * 60;
+  const h = s === 0 ? 0 :
+    (r1 === maxRGB ? (g1 - b1) / diffMaxMin :
+      g1 === maxRGB ? 2.0 + (b1 - r1) / diffMaxMin :
+      4.0 + (r1 - g1) / diffMaxMin) * 60;
 
-  return { h, s, l };
+  return {
+    h: Math.round(h < 0 ? h + 360 : h),
+    s: Math.round(s * 100),
+    l: Math.round(l * 100)
+  };
 };
 
 const rgbToHex = ({r, g, b}) =>
@@ -91,7 +87,10 @@ export const fromRGBA = ({r, g, b, a}) => {
 };
 
 export const fromHSLA = ({h, s, l, a}) => {
-  const { r, g, b } = hslaToRgb({h, s, l});
+  let { r, g, b } = hslaToRgb({h: h / 360, s: s / 100, l: l / 100});
+  r = Math.round(255 * r);
+  g = Math.round(255 * g);
+  b = Math.round(255 * b);
   const hex = rgbToHex({r, g, b});
 
   return {
