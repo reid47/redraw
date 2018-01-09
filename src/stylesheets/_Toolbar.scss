@@ -6,4 +6,18 @@
   display: flex;
   align-items: center;
   border-bottom: 2px solid #000;
+
+  @media screen and (max-width: $breakpoint-small) {
+    height: $unit * 5;
+    align-items: space-between;
+  }
+}
+
+
+.ToolBar-spacer {
+  flex-grow: 1;
+
+  @media screen and (max-width: $breakpoint-small) {
+    display: none;
+  }
 }

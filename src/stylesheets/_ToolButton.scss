@@ -11,6 +11,9 @@
   background-size: 24px 24px;
   background-position: center $unit;
   border: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   &[disabled] {
     opacity: 0.5;
@@ -26,5 +29,13 @@
     &:hover {
       background-color: #eee;
     }
+  }
+
+  @media screen and (max-width: $breakpoint-small) {
+    width: $unit * 4;
+    background-size: 16px 16px;
+    background-position: center ($unit * 2 / 3);
+    line-height: (84px * 2 / 3);
+    font-size: 10px;
   }
 }

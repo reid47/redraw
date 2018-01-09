@@ -10,18 +10,30 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: $breakpoint-small) {
+    height: $unit * 3;
+    font-size: 12px;
+  }
+}
+
+.StatusBar-mouse-position {
+  @media screen and (max-width: $breakpoint-small) {
+    display: none;
+  }
 }
 
 .StatusBar-zoom-slider-container {
   display: flex;
   align-items: center;
+  flex-grow: 0;
 }
 
 .StatusBar-zoom-label {
   display: inline-block;
   margin-right: 8px;
-  width: 120px;
   text-align: right;
+  flex-grow: 0;
 }
 
 .StatusBar-zoom-slider {

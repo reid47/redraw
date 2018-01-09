@@ -53,7 +53,7 @@ export const ToolBar = ({
       {t('recolorButtonText')}
     </ToolButton>
 
-    <div style={{flexGrow: 1}}/>
+    <div className="ToolBar-spacer"/>
 
     <ToolButton
       image="cut"
@@ -79,7 +79,7 @@ export const ToolBar = ({
       {t('pasteButtonText')}
     </ToolButton>
 
-    <div style={{flexGrow: 1}}/>
+    <div className="ToolBar-spacer"/>
 
     <ToolButton
       image="undo"
