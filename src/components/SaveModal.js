@@ -86,8 +86,6 @@ export class SaveModal extends React.Component {
     const originalWidth = selectionActive ? this.props.selectionWidth : canvasWidth;
     const originalHeight = selectionActive ? this.props.selectionHeight : canvasHeight;
 
-    // TODO: localize text below!
-
     return <div className="SaveModal" role="dialog" aria-labelledby="SaveModal-title">
       <div className="SaveModal-content">
         <button
@@ -131,6 +129,8 @@ export class SaveModal extends React.Component {
           <div>
             <input
               type="number"
+              inputmode="numeric"
+              pattern="[0-9]*"
               value={pixelScale}
               min="1"
               max="10"

@@ -64,6 +64,8 @@ export class ColorBar extends React.Component {
             <label htmlFor="ColorBar-color-editor-r">{t('rInputLabel')}</label>
             <input id="ColorBar-color-editor-r"
               type="number" min="0" max="255"
+              inputmode="numeric"
+              pattern="[0-9]*"
               value={currentColor.r}
               onChange={evt => changeCurrentColor(fromRGBA({
                 r: normalize(evt.target.valueAsNumber, 0, 255),
@@ -76,6 +78,8 @@ export class ColorBar extends React.Component {
             <label htmlFor="ColorBar-color-editor-g">{t('gInputLabel')}</label>
             <input id="ColorBar-color-editor-g"
               type="number" min="0" max="255"
+              inputmode="numeric"
+              pattern="[0-9]*"
               value={currentColor.g}
               onChange={evt => changeCurrentColor(fromRGBA({
                 r: currentColor.r,
@@ -88,6 +92,8 @@ export class ColorBar extends React.Component {
             <label htmlFor="ColorBar-color-editor-b">{t('bInputLabel')}</label>
             <input id="ColorBar-color-editor-b"
               type="number" min="0" max="255"
+              inputmode="numeric"
+              pattern="[0-9]*"
               value={currentColor.b}
               onChange={evt => changeCurrentColor(fromRGBA({
                 r: currentColor.r,
@@ -100,6 +106,8 @@ export class ColorBar extends React.Component {
             <label htmlFor="ColorBar-color-editor-a">{t('aInputLabel')}</label>
             <input id="ColorBar-color-editor-a"
               type="number" min="0" max="1" step="0.1"
+              inputmode="numeric"
+              pattern="[0-9.]*"
               value={currentColor.a}
               onChange={evt => changeCurrentColor(fromRGBA({
                 r: currentColor.r,
@@ -115,6 +123,8 @@ export class ColorBar extends React.Component {
             <label htmlFor="ColorBar-color-editor-h">{t('hInputLabel')}</label>
             <input id="ColorBar-color-editor-h"
               type="number" min="0" max="360"
+              inputmode="numeric"
+              pattern="[0-9]*"
               value={currentColor.h}
               onChange={evt => changeCurrentColor(fromHSLA({
                 h: normalize(evt.target.valueAsNumber, 0, 360),
@@ -127,6 +137,8 @@ export class ColorBar extends React.Component {
             <label htmlFor="ColorBar-color-editor-s">{t('sInputLabel')}</label>
             <input id="ColorBar-color-editor-s"
               type="number" min="0" max="100"
+              inputmode="numeric"
+              pattern="[0-9]*"
               value={currentColor.s}
               onChange={evt => changeCurrentColor(fromHSLA({
                 h: currentColor.h,
@@ -139,6 +151,8 @@ export class ColorBar extends React.Component {
             <label htmlFor="ColorBar-color-editor-l">{t('lInputLabel')}</label>
             <input id="ColorBar-color-editor-l"
               type="number" min="0" max="100"
+              inputmode="numeric"
+              pattern="[0-9]*"
               value={currentColor.l}
               onChange={evt => changeCurrentColor(fromHSLA({
                 h: currentColor.h,
@@ -151,6 +165,8 @@ export class ColorBar extends React.Component {
             <label htmlFor="ColorBar-color-editor-a">{t('aInputLabel')}</label>
             <input id="ColorBar-color-editor-a"
               type="number" min="0" max="1" step="0.1"
+              inputmode="numeric"
+              pattern="[0-9.]*"
               value={currentColor.a}
               onChange={evt => changeCurrentColor(fromHSLA({
                 h: currentColor.h,
@@ -177,6 +193,8 @@ export class ColorBar extends React.Component {
             <label htmlFor="ColorBar-color-editor-a">{t('aInputLabel')}</label>
             <input id="ColorBar-color-editor-a"
               type="number" min="0" max="1" step="0.1"
+              inputmode="numeric"
+              pattern="[0-9.]*"
               value={currentColor.a}
               onChange={evt => changeCurrentColor(fromHex({
                 hex: currentColor.hex,
